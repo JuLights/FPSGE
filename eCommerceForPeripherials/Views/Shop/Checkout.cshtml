@@ -1,0 +1,76 @@
+﻿@model eCommerceForPeripherials.Models.Item
+
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<!-- Include the PayPal JavaScript SDK; replace "test" with your own sandbox Business account app client ID -->
+<script src="https://www.paypal.com/sdk/js?client-id=AVI4jHdjUE9DkOveFzv7CmqKrvMgQcfmqwW28b5ZfUNYYuHL4Us1_EcuUaiCKmlb-IJ4NLpOILLOVONU&currency=USD"></script>
+
+<div style="padding-left:25%; display:flex; flex-direction:row">
+    <div>
+        <img width="250" height="250" src="@Model.ItemImageUrl" />
+    </div>
+    <div style="flex-direction:column;">
+        <label ><span style="font-weight:bold;">პროდუქტის სახელი:</span> @Model.Name</label><br />
+        <label ><span style="font-weight:bold;">აღწერა:</span> @Model.Description</label><br />
+        <label ><span style="font-weight:bold;">ფასი:</span> @Model.Price₾</label><br />
+    </div>
+    
+</div>
+<!-- Set up a container element for the button -->
+<div id="paypal-button-container" style="padding-left:25%;"></div>
+
+@{ 
+    var parse = int.Parse(Model.Price);
+    var priceInUSD = parse / 2.9005524;
+    var priceInDecimal = Decimal.Round(Convert.ToDecimal(priceInUSD),2);
+}
+<script>
+    console.log(@priceInDecimal);
+</script>
+
+<script>
+    paypal.Buttons({
+
+        // Sets up the transaction when a payment button is clicked
+        createOrder: function (data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        currency_code: 'USD',
+                        value: '@priceInDecimal' // Can reference variables or functions. Example: `value: document.getElementById('...').value`
+                    },
+                    @*items: [
+                        {
+                            name: '@Model.Name',
+                            description: '@Model.Description',
+                            unit_amount: {
+                                currency_code: 'USD',
+                                value: '@Model.Price'
+                            },
+                            quantity = '1'
+                        },
+                    ]*@
+                }]
+            });
+        },
+
+        // Finalize the transaction after payer approval
+        onApprove: function (data, actions) {
+            return actions.order.capture().then(function (orderData) {
+                // Successful capture! For dev/demo purposes:
+                console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+                var transaction = orderData.purchase_units[0].payments.captures[0];
+                alert('Transaction ' + transaction.status + ': ' + transaction.id + '\n\nSee console for all available details');
+
+                // When ready to go live, remove the alert and show a success message within this page. For example:
+                // var element = document.getElementById('paypal-button-container');
+                // element.innerHTML = '';
+                // element.innerHTML = '<h3>Thank you for your payment!</h3>';
+                // Or go to another URL:  actions.redirect('thank_you.html');
+            });
+        }
+    }).render('#paypal-button-container');
+
+</script>

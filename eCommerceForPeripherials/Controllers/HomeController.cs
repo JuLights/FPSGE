@@ -1,4 +1,5 @@
-﻿using eCommerceForPeripherials.Models;
+﻿using eCommerceForPeripherials.Data;
+using eCommerceForPeripherials.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,17 +12,32 @@ namespace eCommerceForPeripherials.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ApplicationDbContext _db;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ApplicationDbContext db)
         {
-            _logger = logger;
+            _db = db;
         }
 
         public IActionResult Index()
         {
+            IEnumerable<Item> itemList = _db.Items;
+
+            return View(itemList.OrderByDescending(x=>x.Id));
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
             return View();
         }
+
+        //[HttpPost]
+        //public IActionResult Create()
+        //{
+          
+        //    return View();
+        //}
 
         public IActionResult Privacy()
         {

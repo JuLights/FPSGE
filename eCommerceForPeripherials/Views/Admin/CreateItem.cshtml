@@ -1,0 +1,83 @@
+﻿@model eCommerceForPeripherials.Models.Item
+
+@{
+    ViewData["Title"] = "CreateItem";
+}
+
+<div class="row" style="padding-left:25%;">
+    <div class="col-md-4">
+        <form asp-action="CreateItem">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ItemImageUrl" class="control-label"></label>
+                <input asp-for="ItemImageUrl" class="form-control" />
+                <span asp-validation-for="ItemImageUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ItemName" class="control-label"></label>
+                <select asp-for="ItemName" class="form-control">
+                    <option value="Mouse">Mouse</option>
+                    <option value="Keyboard">Keyboard</option>
+                    <option value="Headset">Headset</option>
+                </select>
+                <span asp-validation-for="ItemName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Brand" class="control-label"></label>
+                <input asp-for="Brand" class="form-control" />
+                <span asp-validation-for="Brand" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Connection" class="control-label"></label>
+                <input asp-for="Connection" class="form-control" />
+                <span asp-validation-for="Connection" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Wireless" class="control-label"></label>
+                <input asp-for="Wireless" class="form-control" />
+                <span asp-validation-for="Wireless" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CableLength" class="control-label"></label>
+                <input asp-for="CableLength" class="form-control" />
+                <span asp-validation-for="CableLength" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Colour" class="control-label"></label>
+                <input asp-for="Colour" class="form-control" />
+                <span asp-validation-for="Colour" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RGB" class="control-label"></label>
+                <input asp-for="RGB" class="form-control" />
+                <span asp-validation-for="RGB" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
