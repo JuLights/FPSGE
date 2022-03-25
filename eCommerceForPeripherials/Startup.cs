@@ -35,6 +35,9 @@ namespace eCommerceForPeripherials
             services.AddControllersWithViews();
 
             services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddBankOfGeorgiaIpay(
+                Configuration.GetBankOfGeorgiaIpayClientOptions("iPay")
+                );
 
         }
 
