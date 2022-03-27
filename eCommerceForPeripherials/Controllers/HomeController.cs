@@ -7,8 +7,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using BankOfGeorgia.IpayClient;
 using System.Net.Http;
+using eCommerceForPeripherials.Models.ViewModels;
 
 namespace eCommerceForPeripherials.Controllers
 {
@@ -51,5 +51,26 @@ namespace eCommerceForPeripherials.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        [HttpGet]
+        public IActionResult Contact()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Contact(ContactViewModel contactViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                //await _db.Contacts.AddAsync(contactViewModel);
+                //await _db.SaveChangesAsync();
+            }
+            return View();
+        }
+
+
     }
 }

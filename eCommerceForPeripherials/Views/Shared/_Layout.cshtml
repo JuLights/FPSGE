@@ -35,6 +35,8 @@
     <link rel="stylesheet" href="../../../css/animate.css" />
     <!-- zoom effect -->
     <link rel='stylesheet' href='../../css/hizoom.css'>
+    <!-- login css-->
+    <link rel="stylesheet" href="../../login-css/login.css"
 
     <!--[if lt IE 9]>
           <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -89,12 +91,12 @@
                                     @if (user.IsSignedIn(User))
                                     {
 
-                                        <li><a class="fa fa-sign-out" asp-controller="Account" asp-action="LogOff" title="sign-out"> Log off</a></li>
+                                        <li><a class="fa fa-sign-out" asp-controller="Account" asp-action="LogOff" title="sign-out"> Sign Out</a></li>
                                     }
                                     else
                                     {
-                                        <li><a class="fa fa-sign-in" asp-controller="Account" asp-action="Login" title="sign-out"> Log In</a></li>
-                                        <li><a class="fa fa-sign-in" asp-controller="Account" asp-action="Register" title="sign-out"> Register</a></li>
+                                        <li><a class="fa fa-sign-in" asp-controller="Account" asp-action="Login" title="sign-out"> Sign In</a></li>
+                                        @*<li><a class="fa fa-sign-in" asp-controller="Account" asp-action="Register" title="sign-out"> Sign Up</a></li>*@
                                     }
 
                                 </ul>
@@ -109,7 +111,7 @@
         </div>
         <!-- end header top -->
         <!-- header bottom -->
-        <div class="header_bottom">
+        <div class="header_bottom" style="background-color:black;">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
@@ -122,23 +124,23 @@
                         <div class="menu_side">
                             <div id="navbar_menu">
                                 <ul class="first-ul">
-                                    <li>
-                                        <a class="active" asp-controller="Home" asp-action="Index">Home</a>
+                                    <li style="color:white;">
+                                        <a class="active" asp-controller="Home" asp-action="Index" style="color:white;">Home</a>
                                         @*<ul>
                                             <li><a href="it_home.html">It Home Page</a></li>
                                             <li><a href="it_home_dark.html">It Dark Home Page</a></li>
                                         </ul>*@
                                     </li>
-                                    <li><a asp-controller="Mouse" asp-action="Index">Mouse</a></li>
-                                    <li>
-                                        <a asp-controller="Keyboard" asp-action="Index">Keyboard</a>
+                                    <li style="color:white;"><a asp-controller="Mouse" asp-action="Index" style="color:white;">Mouse</a></li>
+                                    <li style="color:white;">
+                                        <a asp-controller="Keyboard" asp-action="Index" style="color:white;">Keyboard</a>
                                         @*<ul>
                                             <li><a href="it_service_list.html">Services list</a></li>
                                             <li><a href="it_service_detail.html">Services Detail</a></li>
                                         </ul>*@
                                     </li>
                                     <li>
-                                        <a asp-controller="Headset" asp-action="Index">Headset</a>
+                                        <a asp-controller="Headset" asp-action="Index" style="color:white;">Headset</a>
                                         @*<ul>
                                             <li><a href="it_blog.html">Blog List</a></li>
                                             <li><a href="it_blog_grid.html">Blog Grid</a></li>
@@ -165,7 +167,7 @@
                                         </ul>
                                     </li>*@
                                     <li>
-                                        <a asp-controller="Contact" asp-action="Index">Contact</a>
+                                        <a asp-controller="Home" asp-action="Contact" style="color:white;">Contact</a>
                                         
                                     </li>
                                 </ul>
@@ -279,7 +281,7 @@
                     </div>
                 </div>
                 <div class="cprt">
-                    <p>FPS.GE © Copyrights 2022 Created by Ju</p>
+                    <p><a href="#">FPS.GE</a> © Copyrights 2022 Created by <a href="#">Ju</a></p>
                 </div>
             </div>
         </div>

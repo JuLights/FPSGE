@@ -34,15 +34,15 @@ namespace eCommerceForPeripherials.Controllers
         }
 
         [HttpPost]
-        public IActionResult DeleteItem(int? Id)
+        public async Task<IActionResult> DeleteItem(int? Id)
         {
-            var obj = _db.Items.Find(Id);
+            var obj = await _db.Items.FindAsync(Id);
             if (obj == null)
             {
                 return NotFound();
             }
             _db.Items.Remove(obj);
-            _db.SaveChanges();
+            await _db.SaveChangesAsync();
 
             return RedirectToAction("Index","Home");
         }
@@ -61,12 +61,12 @@ namespace eCommerceForPeripherials.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult EditItem(Item item)
+        public async Task<IActionResult> EditItem(Item item)
         {
             if (ModelState.IsValid)
             {
                 _db.Items.Update(item);
-                _db.SaveChanges();
+                await _db.SaveChangesAsync();
                 return RedirectToAction("Index", "Home");
             }
 
@@ -74,10 +74,10 @@ namespace eCommerceForPeripherials.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateItem(Item item)
+        public async Task<IActionResult> CreateItem(Item item)
         {
-            _db.Items.Add(item);
-            _db.SaveChanges();
+            await _db.Items.AddAsync(item);
+            await _db.SaveChangesAsync();
 
             return RedirectToAction("Index","Home");
         }

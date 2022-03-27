@@ -84,7 +84,7 @@ namespace eCommerceForPeripherials.Controllers
                     Name = regModel.Name
                 };
 
-                var result = await _userManager.CreateAsync(user,regModel.Password);
+                var result = await _userManager.CreateAsync(user, regModel.Password);
                 if (result.Succeeded)
                 {
                     await _userManager.AddToRoleAsync(user, Helper.User);
