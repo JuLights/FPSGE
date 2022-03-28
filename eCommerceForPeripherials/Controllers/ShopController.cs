@@ -1,4 +1,4 @@
-﻿using BankOfGeorgia.IpayClient;
+﻿//using BankOfGeorgia.IpayClient;
 using eCommerceForPeripherials.Data;
 using eCommerceForPeripherials.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -13,7 +13,7 @@ namespace eCommerceForPeripherials.Controllers
     public class ShopController : Controller
     {
         private readonly ApplicationDbContext _db;
-        private readonly IBankOfGeorgiaIpayClient _iPayClient; //iPay
+        //private readonly IBankOfGeorgiaIpayClient _iPayClient; //iPay
         public ShopController(ApplicationDbContext db/*, IBankOfGeorgiaIpayClient iPayClient*/)
         {
             _db = db;
@@ -37,30 +37,30 @@ namespace eCommerceForPeripherials.Controllers
 
         public async Task<IActionResult> Checkout(int? Id)
         {
-            var checkoutItem = _db.Items.Where(x => x.Id == Id).FirstOrDefault();
+            //var checkoutItem = _db.Items.Where(x => x.Id == Id).FirstOrDefault();
 
-            var order = new OrderRequest()
-            {
-                Intent = Intent.Authorize,
-                Currency = IPayCurrency.GEL,
-                Items = new[]
-                {
-                    new OrderItem() { Price= Convert.ToDecimal(checkoutItem.Price), Description = checkoutItem.Description, Quantity = 1, ProductId = checkoutItem.Id.ToString() }
-                },
-                Locale = "ka",
-                ShopOrderId = Guid.NewGuid().ToString("N"),
-                //RedirectUrl = "https://localhost:44371//IpayCallback/Payment", //dev
-                RedirectUrl = "https://fps.ge//IpayCallback/Payment", //prod
-                ShowShopOrderIdOnExtract = true,
-                CaptureMethod = CaptureMethod.Automatic,
-            };
+            //var order = new OrderRequest()
+            //{
+            //    Intent = Intent.Authorize,
+            //    Currency = IPayCurrency.GEL,
+            //    Items = new[]
+            //    {
+            //        new OrderItem() { Price= Convert.ToDecimal(checkoutItem.Price), Description = checkoutItem.Description, Quantity = 1, ProductId = checkoutItem.Id.ToString() }
+            //    },
+            //    Locale = "ka",
+            //    ShopOrderId = Guid.NewGuid().ToString("N"),
+            //    //RedirectUrl = "https://localhost:44371//IpayCallback/Payment", //dev
+            //    RedirectUrl = "https://fps.ge//IpayCallback/Payment", //prod
+            //    ShowShopOrderIdOnExtract = true,
+            //    CaptureMethod = CaptureMethod.Automatic,
+            //};
 
-            //await _iPayClient.AuthenticateAsync();
+            ////await _iPayClient.AuthenticateAsync();
 
-            //await _iPayClient.AuthenticateAsync(); //es aucilebelia
+            ////await _iPayClient.AuthenticateAsync(); //es aucilebelia
 
-            //var shporderid = checkoutItem.Name + "//" + checkoutItem.Brand + "//" + checkoutItem.Id.ToString();
-            var response = await _iPayClient.MakeOrderAsync(order);
+            ////var shporderid = checkoutItem.Name + "//" + checkoutItem.Brand + "//" + checkoutItem.Id.ToString();
+            //var response = await _iPayClient.MakeOrderAsync(order);
 
             // When succeeded redirect to bank page
             //var redirectUrl = response.GetRedirectUrl();
@@ -68,32 +68,32 @@ namespace eCommerceForPeripherials.Controllers
             return View(/*redirectUrl*/);
         }
 
-        public async Task<RedirectResult> BogPayment(int Id)
-        {
-            var checkoutItem = _db.Items.Where(x => x.Id == Id).FirstOrDefault();
+        //public async Task<RedirectResult> BogPayment(int Id)
+        //{
+        //    var checkoutItem = _db.Items.Where(x => x.Id == Id).FirstOrDefault();
 
-            var order = new OrderRequest()
-            {
-                Intent = Intent.Authorize,
-                Currency = IPayCurrency.GEL,
-                Items = new[]
-                {
-                    new OrderItem() { Price= Convert.ToDecimal(checkoutItem.Price), Description = checkoutItem.Description, Quantity = 1, ProductId = checkoutItem.Id.ToString() }
-                },
-                Locale = "ka",
-                ShopOrderId = Guid.NewGuid().ToString("N"),
-                //RedirectUrl = "https://localhost:44371//IpayCallback/Payment", //dev
-                RedirectUrl = "https://fps.ge//IpayCallback/Payment", //prod
-                ShowShopOrderIdOnExtract = true,
-                CaptureMethod = CaptureMethod.Automatic,
-            };
+        //    var order = new OrderRequest()
+        //    {
+        //        Intent = Intent.Authorize,
+        //        Currency = IPayCurrency.GEL,
+        //        Items = new[]
+        //        {
+        //            new OrderItem() { Price= Convert.ToDecimal(checkoutItem.Price), Description = checkoutItem.Description, Quantity = 1, ProductId = checkoutItem.Id.ToString() }
+        //        },
+        //        Locale = "ka",
+        //        ShopOrderId = Guid.NewGuid().ToString("N"),
+        //        //RedirectUrl = "https://localhost:44371//IpayCallback/Payment", //dev
+        //        RedirectUrl = "https://fps.ge//IpayCallback/Payment", //prod
+        //        ShowShopOrderIdOnExtract = true,
+        //        CaptureMethod = CaptureMethod.Automatic,
+        //    };
 
 
-            var response = await _iPayClient.MakeOrderAsync(order);
-            var redirectUrl = response.GetRedirectUrl();
+        //    var response = await _iPayClient.MakeOrderAsync(order);
+        //    var redirectUrl = response.GetRedirectUrl();
 
-            return Redirect(redirectUrl);
-        }
+        //    return Redirect(redirectUrl);
+        //}
 
 
     }
