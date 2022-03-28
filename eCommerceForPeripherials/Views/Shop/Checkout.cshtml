@@ -15,6 +15,7 @@
         <label ><span style="font-weight:bold;">პროდუქტის სახელი:</span> @Model.Name</label><br />
         <label ><span style="font-weight:bold;">აღწერა:</span> @Model.Description</label><br />
         <label ><span style="font-weight:bold;">ფასი:</span> @Model.Price₾</label><br />
+        <a asp-action="IPayment" asp-controller="Shop" asp-route-Id="@Model.Id">გადაიხადე: IPay-ით</a><br />
     </div>
     
 </div>
