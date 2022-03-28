@@ -176,7 +176,7 @@ h3 a,
 h4 a,
 h5 a,
 h6 a {
-	color: #212121;
+	color: #9999;
 	text-decoration: none!important;
 	opacity: 1
 }
@@ -426,7 +426,7 @@ a#submit {
 
 a:hover,
 a:focus {
-	color: #000;
+	color: white;
 	text-decoration: none;
 }
 

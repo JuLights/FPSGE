@@ -1,4 +1,5 @@
 ﻿@inject Microsoft.AspNetCore.Identity.SignInManager<eCommerceForPeripherials.Models.ApplicationUser> user
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -95,7 +96,7 @@
                                     }
                                     else
                                     {
-                                        <li><a class="fa fa-sign-in" asp-controller="Account" asp-action="Login" title="sign-out"> Sign In</a></li>
+                                        <li><a class="fa fa-sign-in" @*asp-controller="Account" asp-action="Login"*@ href="Url /Account/Login/#login"  title="sign-out"> Sign In</a></li>
                                         @*<li><a class="fa fa-sign-in" asp-controller="Account" asp-action="Register" title="sign-out"> Sign Up</a></li>*@
                                     }
 
@@ -116,7 +117,7 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
                         <!-- logo start -->
-                        <div class="logo"> <a asp-controller="Home" asp-action="Index"><img src="../../../images/logos/it_logooo.png" alt="logo" /></a> </div>
+                        <div class="logo"> <a asp-controller="Home" asp-action="Index"><img src="../../../images/logos/fps-main-logo.png" alt="logo" /></a> </div>
                         <!-- logo end -->
                     </div>
                     <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
