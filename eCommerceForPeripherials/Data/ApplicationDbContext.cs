@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HltvParser;
 
 namespace eCommerceForPeripherials.Data
 {
@@ -16,5 +17,7 @@ namespace eCommerceForPeripherials.Data
         }
 
         public DbSet<Item> Items { get; set; }
+
+        public DbSet<HltvParser.Player> Player { get; set; }
     }
 }

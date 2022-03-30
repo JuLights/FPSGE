@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Net.Http;
 using eCommerceForPeripherials.Models.ViewModels;
+using HltvParser;
 
 namespace eCommerceForPeripherials.Controllers
 {
@@ -21,8 +22,11 @@ namespace eCommerceForPeripherials.Controllers
             _db = db;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            //HltvParser.HltvParser parser = new HltvParser.HltvParser();
+            //var Players = await parser.GetTopPlayers();
+
             IEnumerable<Item> itemList = _db.Items;
 
             return View(itemList.OrderByDescending(x=>x.Id));

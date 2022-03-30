@@ -68,7 +68,22 @@
                                                 <p>@item.Description</p>
                                                 @if (User.IsInRole("Admin"))
                                                 {
-                                                    <form id="deleteItem" method="post" asp-action="DeleteItem" asp-controller="Admin" asp-route-id="@item.Id"><a class="btn btn-danger" href="javascript:document.getElementById('deleteItem').submit()">delete</a></form>
+                                                    //<form id="deleteItem" method="post" asp-action="DeleteItem" asp-controller="Admin" asp-route-id="@item.Id"><a class="btn btn-danger" href="javascript:document.getElementById('deleteItem').submit()">delete</a></form>
+                                                    <button class="btn btn-danger" onclick="document.getElementById('id02').style.display='block'">delete</button>
+                                                    <div id="id02" class="modall">
+												  <span onclick="document.getElementById('id02').style.display='none'" class="closee" title="Close Modal">&times;</span>
+												  <form id="deleteItemDiv2" method="post" class="modal-contentt" asp-controller="Admin" asp-action="DeleteItem" asp-route-id="@item.Id">
+													<div class="containerr">
+													  <h1 style="color:darkred;">Delete Item</h1>
+													  <p>Are you sure you want to delete @item.Name ?</p>
+
+													  <div class="clearfix">
+														<button type="button" class="btn btn-secondary" onclick="cancelBut()">Cancel</button>
+														<button type="button" class="btn btn-danger" href="javascript:document.getElementById('deleteItemDiv2').submit()">Delete</button>
+													  </div>
+													</div>
+												  </form>
+												</div>
                                                 }
                                             </div>
                                         </div>
@@ -79,6 +94,21 @@
                         }
                     }
 
+                    <script>
+                        function cancelBut(){
+                            document.getElementById('id02').style.display = 'none';
+                        }
+
+						// Get the modal
+                        var modal = document.getElementById('id02');
+
+                        // When the user clicks anywhere outside of the modal, close it
+                        window.onclick = function(event) {
+                          if (event.target == modal) {
+	                        modal.style.display = "none";
+                          }
+                        }
+                    </script>
 
 
                     @*<div class="col-md-4 col-sm-6 col-xs-12 margin_bottom_30_all">

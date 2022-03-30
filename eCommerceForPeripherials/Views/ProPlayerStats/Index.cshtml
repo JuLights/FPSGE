@@ -1,0 +1,67 @@
+﻿@model IEnumerable<HltvParser.Player>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Game: Counter-Strike:Global Offensive</h1>
+@if (User.IsInRole("Admin")){
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Maps)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rounds)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KD_Diff)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KD)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Maps)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rounds)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KD_Diff)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KD)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rating)
+            </td>
+            <td>
+                @*<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |*@
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                @*<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

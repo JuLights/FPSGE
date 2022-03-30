@@ -37,7 +37,12 @@
     <!-- zoom effect -->
     <link rel='stylesheet' href='../../css/hizoom.css'>
     <!-- login css-->
-    <link rel="stylesheet" href="../../login-css/login.css"
+    <link rel="stylesheet" href="../../login-css/login.css" />
+    <!-- modal css-->
+    <link rel="stylesheet" href="../../modal-css/modal.css" />
+    <!--for modal-->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 
     <!--[if lt IE 9]>
           <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -67,9 +72,8 @@
                                         {
                                             <li> <span class="topbar-label"><i class="fa  fa-heart"></i></span> <span class="topbar-hightlight">Hello, User</span> </li>
                                         }
-
-
-}
+                                        
+                                    }
                                     <li> <span class="topbar-label"><i class="fa  fa-home"></i></span> <span class="topbar-hightlight">Tbilisi,Georgia , 0102</span> </li>
                                     <li> <span class="topbar-label"><i class="fa fa-envelope-o"></i></span> <span class="topbar-hightlight"><a href="mailto:info@fps.ge">info@fps.ge</a></span> </li>
                                 </ul>
@@ -149,6 +153,10 @@
                                             <li><a href="it_blog_detail.html">Blog Detail</a></li>
                                         </ul>*@
                                     </li>
+                                    <li>
+                                        <a asp-controller="ProPlayerStats" asp-action="Index" style="color:white;">Pro's Stats</a>
+                                        
+                                    </li>
                                     @*<li>
                                         <a href="#">Pages</a>
                                         <ul>
@@ -189,6 +197,17 @@
     </header>
     <!-- end header -->
 
+    @*<!--MODAL Development Stage Message Start-->
+
+  <div id="id01" class="w3-modal" style="padding-top:15%;">
+    <div class="w3-modal-content w3-animate-top w3-card-4" style="background-color:rgba(19, 19, 18, 0.8);">
+      <div class="w3-container">
+        <p style="color:white; text-align:center;">The website is in the development stage and thanks for your patience.</p>
+      </div>
+    </div>
+  </div>
+    <!--MODAL Development Stage Message End-->*@
+
     <!-- viewRender -->
     @RenderBody()
     <!-- viewRender ends -->
@@ -221,6 +240,40 @@
 
     <!-- footer -->
     <footer class="footer_style_2">
+        @*//facebook Messanger Start*@
+        <!-- Messenger Chat Plugin Code -->
+    <div id="fb-root"></div>
+
+    <!-- Your Chat Plugin code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+
+    <script>
+      var chatbox = document.getElementById('fb-customer-chat');
+      chatbox.setAttribute("page_id", "102722825736453");
+      chatbox.setAttribute("attribution", "biz_inbox");
+    </script>
+
+    <!-- Your SDK code -->
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          xfbml            : true,
+          version          : 'v13.0'
+        });
+      };
+
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <!-- Messenger Chat Plugin Code END -->
+    @*//Facebook Messanger End*@
+
         <div class="container-fuild">
             <div class="row">
                 <div class="footer_blog">
@@ -231,9 +284,9 @@
                             </div>
                             @*<p>Tincidunt elit magnis nulla facilisis. Dolor sagittis maecenas. Sapien nunc amet ultrices, dolores sit ipsum velit purus aliquet, massa fringilla leo orci.</p>*@
                             <ul class="social_icons">
-                                <li class="social-icon fb"><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                <li class="social-icon fb"><a href="https://www.facebook.com/FPS.GE/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                                 <li class="social-icon tw"><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                <li class="social-icon gp"><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                                @*<li class="social-icon gp"><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>*@
                             </ul>
                         </div>
                         <div class="col-md-6">
@@ -241,11 +294,11 @@
                                 <h2>Additional links</h2>
                             </div>
                             <ul class="footer-menu">
-                                <li><a href="it_about.html"><i class="fa fa-angle-right"></i> About us</a></li>
-                                <li><a href="it_term_condition.html"><i class="fa fa-angle-right"></i> Terms and conditions</a></li>
-                                <li><a href="it_privacy_policy.html"><i class="fa fa-angle-right"></i> Privacy policy</a></li>
+                                <li><a href="#it_about.html"><i class="fa fa-angle-right"></i> About us</a></li>
+                                <li><a href="#it_term_condition.html"><i class="fa fa-angle-right"></i> Terms and conditions</a></li>
+                                <li><a href="#it_privacy_policy.html"><i class="fa fa-angle-right"></i> Privacy policy</a></li>
                                 @*<li><a href="it_news.html"><i class="fa fa-angle-right"></i> News</a></li>*@
-                                <li><a href="it_contact.html"><i class="fa fa-angle-right"></i> Contact us</a></li>
+                                <li><a asp-action="contact" asp-controller="home"><i class="fa fa-angle-right"></i> Contact us</a></li>
                             </ul>
                         </div>
                         <div class="col-md-6">
@@ -253,11 +306,13 @@
                                 <h2>Services</h2>
                             </div>
                             <ul class="footer-menu">
-                                <li><a href="it_data_recovery.html"><i class="fa fa-angle-right"></i> Data recovery</a></li>
-                                <li><a href="it_computer_repair.html"><i class="fa fa-angle-right"></i> Computer repair</a></li>
-                                <li><a href="it_mobile_service.html"><i class="fa fa-angle-right"></i> Mobile service</a></li>
-                                <li><a href="it_network_solution.html"><i class="fa fa-angle-right"></i> Network solutions</a></li>
-                                <li><a href="it_techn_support.html"><i class="fa fa-angle-right"></i> Technical support</a></li>
+                                @*<li><a href="it_data_recovery.html"><i class="fa fa-angle-right"></i> Data recovery</a></li>*@
+                                <li><a href="#it_computer_repair.html"><i class="fa fa-angle-right"></i> PC peripherials</a></li>
+                                <li><a href="#it_computer_repair.html"><i class="fa fa-angle-right"></i> Hardware upgrade</a></li>
+                                <li><a href="#it_computer_repair.html"><i class="fa fa-angle-right"></i> Computer repair</a></li>
+                                @*<li><a href="it_mobile_service.html"><i class="fa fa-angle-right"></i> Mobile service</a></li>*@
+                                @*<li><a href="it_network_solution.html"><i class="fa fa-angle-right"></i> Network solutions</a></li>*@
+                                <li><a href="#it_techn_support.html"><i class="fa fa-angle-right"></i> Technical support</a></li>
                             </ul>
                         </div>
                         <div class="col-md-6">
@@ -265,16 +320,16 @@
                                 <h2>Contact us</h2>
                             </div>
                             <p>
-                                123 Second Street Fifth Avenue,<br>
-                                Manhattan, New York<br>
-                                <span style="font-size:18px;"><a href="tel:+9876543210">+987 654 3210</a></span>
+                                @*<a asp-action="contact" asp-controller="home">Contact</a><br>*@
+                                Georgia, Tbilisi<br>
+                                <span style="font-size:18px;"><a href="tel:+995597406036">+995 597 40 60 36</a></span>
                             </p>
                             <div class="footer_mail-section">
                                 <form>
                                     <fieldset>
                                         <div class="field">
-                                            <input placeholder="Email" type="text">
-                                            <button class="button_custom"><i class="fa fa-envelope" aria-hidden="true"></i></button>
+                                            <input placeholder="Email" type="text"><br />
+                                            <label for="subbut">Subscribe Our Newsletter</label><button id="subbut" class="button_custom"><i class="fa fa-envelope" aria-hidden="true"></i></button>
                                         </div>
                                     </fieldset>
                                 </form>
@@ -290,6 +345,7 @@
     </footer>
     <!-- end footer -->
     <!-- js section -->
+    @*<script src="../../js/modal.js"></script>*@
     <script src="../../js/jquery.min.js"></script>
     <script src="../../js/bootstrap.min.js"></script>
     <!-- menu js -->
