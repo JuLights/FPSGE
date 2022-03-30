@@ -18,6 +18,6 @@ namespace eCommerceForPeripherials.Data
 
         public DbSet<Item> Items { get; set; }
 
-        public DbSet<HltvParser.Player> Player { get; set; }
+        public DbSet<Player> Player { get; set; }
     }
 }

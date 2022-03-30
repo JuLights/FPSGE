@@ -39,7 +39,8 @@
                     </div>
                     <div class="col-xl-6 col-lg-12 col-md-12 product_detail_side detail_style1">
                         <div class="product-heading">
-                            <h2>@Html.DisplayFor(model => model.Name)</h2>
+                            <h2 style="color:#9999;">@Html.DisplayFor(model => model.Name)</h2><h3 style="color:#9999;">
+                                    <span>Condition: </span>@Model.ItemCondition</h3>
                             @{
                                     if (User.IsInRole("Admin"))
                                     {
@@ -47,7 +48,7 @@
                             }
                             }
                         </div>
-                        <div class="product-detail-side"> <span>@*<del>$25.00</del>*@</span><span class="new-price">@Html.DisplayFor(model => model.Price)₾</span> <span class="rating"> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star-o" aria-hidden="true"></i> </span> <span class="review">(5 customer review)</span> </div>
+                        <div class="product-detail-side"> <span>@*<del>$25.00</del>*@</span><span class="new-price" style="color:#9999;">@Html.DisplayFor(model => model.Price)₾</span> <span class="rating"> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star-o" aria-hidden="true"></i> </span> <span class="review">(5 customer review)</span> </div>
                         <div class="detail-contant">
                             <p style="font-weight:bold;">
                                 @Html.DisplayFor(model => model.Description)<br><br>

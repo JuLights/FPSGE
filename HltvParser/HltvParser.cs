@@ -30,7 +30,7 @@ namespace HltvParser
 				int maps = Convert.ToInt32(trNodes[0].ChildNodes[i].ChildNodes[5].InnerText);
 				int rounds = Convert.ToInt32(trNodes[0].ChildNodes[i].ChildNodes[7].InnerText);
 				string kddiff = trNodes[0].ChildNodes[i].ChildNodes[9].InnerText;
-				decimal kd = Convert.ToDecimal(trNodes[0].ChildNodes[i].ChildNodes[11].InnerText);
+				string kd = trNodes[0].ChildNodes[i].ChildNodes[11].InnerText;
 				string rating = trNodes[0].ChildNodes[i].ChildNodes[13].InnerText;
 
 				Players.Add(new Player { Id = count, Name = name, Maps = maps, Rounds = rounds, KD_Diff = kddiff, KD = kd, Rating = rating });

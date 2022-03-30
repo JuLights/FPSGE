@@ -12,6 +12,7 @@ namespace eCommerceForPeripherials.Models
         public int Id { get; set; }
         public string ItemImageUrl { get; set; }
         public string ItemName { get; set; } //mouse, keyboard, headset
+        public string ItemCondition { get; set; } // axali, axalivit, meoradi
         public string Name { get; set; }
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
