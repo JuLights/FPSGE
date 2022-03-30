@@ -27,6 +27,8 @@ namespace eCommerceForPeripherials.Controllers
             //HltvParser.HltvParser parser = new HltvParser.HltvParser();
             //var Players = await parser.GetTopPlayers();
 
+            var kk = await HltvParser.HltvParser.GetPlayersGearAsync();
+
             IEnumerable<Item> itemList = _db.Items;
 
             return View(itemList.OrderByDescending(x=>x.Id));

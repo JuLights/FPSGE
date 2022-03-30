@@ -16,5 +16,11 @@ namespace eCommerceForPeripherials.Controllers
 
             return View(_playerStatisticService.players);
         }
+
+        public IActionResult PlayersGear()
+        {
+            return View(_playerStatisticService.playersGear);
+        }
+
     }
 }

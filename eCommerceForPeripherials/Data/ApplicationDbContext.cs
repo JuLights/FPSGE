@@ -19,5 +19,7 @@ namespace eCommerceForPeripherials.Data
         public DbSet<Item> Items { get; set; }
 
         public DbSet<Player> Player { get; set; }
+
+        public DbSet<PlayersGear> PlayersGear { get; set; }
     }
 }

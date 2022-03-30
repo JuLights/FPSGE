@@ -40,6 +40,8 @@
     <link rel="stylesheet" href="../../login-css/login.css" />
     <!-- modal css-->
     <link rel="stylesheet" href="../../modal-css/modal.css" />
+    <!-- nav css-->
+    <link rel="stylesheet" href="../../nav/navv.css" />
     <!--for modal-->
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
@@ -153,9 +155,11 @@
                                             <li><a href="it_blog_detail.html">Blog Detail</a></li>
                                         </ul>*@
                                     </li>
-                                    <li>
-                                        <a asp-controller="ProPlayerStats" asp-action="Index" style="color:white;">Pro's Stats</a>
-                                        
+                                    <li><a href="#" style="color:white;">Pro</a>
+                                        <ul>
+                                            <li> <a asp-controller="ProPlayerStats" asp-action="Index" style="color:white;">Pro's Stats</a></li>
+                                            <li><a asp-controller="ProPlayerStats" asp-action="PlayersGear" style="color:white;">Pro's Gear</a></li>
+                                        </ul>
                                     </li>
                                     @*<li>
                                         <a href="#">Pages</a>
