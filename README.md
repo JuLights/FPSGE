@@ -3,7 +3,7 @@
  2 type role - Admin, User.
 * Admins can add, edit, delete products.
 * Users can register/authorize and buy products via PayPal.
-* Added - BankOfGeorgia Payment.
+* Added - IPayClient.
 * TODO - TBC Payment.
 
 # USER
