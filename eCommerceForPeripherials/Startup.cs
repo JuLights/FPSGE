@@ -33,6 +33,7 @@ namespace eCommerceForPeripherials
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionString")));
 
+            services.AddScoped<IAppDbContextService, AppDbContextService>();
             //services.BuildServiceProvider().GetService<ApplicationDbContext>().Database.Migrate(); //??
 
             services.AddControllersWithViews();
@@ -42,7 +43,8 @@ namespace eCommerceForPeripherials
                 Configuration.GetBankOfGeorgiaIpayClientOptions("iPay")
                 );
 
-            services.AddSingleton(new PlayerStatisticService());
+            services.AddScoped<IPlayerStatisticService,PlayerStatisticService>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

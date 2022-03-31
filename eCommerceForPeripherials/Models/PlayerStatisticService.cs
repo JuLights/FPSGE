@@ -1,4 +1,6 @@
-﻿using HltvParser;
+﻿using eCommerceForPeripherials.Data;
+using HltvParser;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -6,23 +8,24 @@ namespace eCommerceForPeripherials.Models
 {
 	public class PlayerStatisticService : IPlayerStatisticService
 	{
-		//public static PlayerStatisticService _playerStatisticService = new PlayerStatisticService();
 		public IEnumerable<Player> players { get; set; }
 		public IEnumerable<PlayersGear> playersGear { get; set; }
-		public PlayerStatisticService()
+		private readonly ApplicationDbContext _db;
+		public PlayerStatisticService(ApplicationDbContext db)
 		{
-			GetPlayers();
-			GetPlayersGear();
+			_db = db;
 		}
 
-		public async void GetPlayers()
-		{
-			players = await HltvParser.HltvParser.GetTopPlayers();
-		}
-
-		public async void GetPlayersGear()
+		public IEnumerable<Player> GetPlayers()
         {
-			playersGear = await HltvParser.HltvParser.GetPlayersGearAsync();
+			players = _db.Player;
+			return players;
+		} 
+
+		public IEnumerable<PlayersGear> GetPlayersGear()
+        {
+			playersGear = _db.PlayersGear;
+			return playersGear;
 		}
 
 	}

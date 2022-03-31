@@ -1,0 +1,36 @@
+﻿.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.pagination a.active {
+  background-color: #3b4554;
+  color: white;
+  border-radius: 5px;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+  border-radius: 5px;
+}
+
+/* Style the buttons */
+/*.btn {
+    border: none;
+    outline: none;
+    padding: 10px 16px;
+    background-color: #f1f1f1;
+    cursor: pointer;
+}*/
+
+    /* Style the active class (and buttons on mouse-over) */
+    /*.active, .btn:hover {
+        background-color: #666;
+        color: white;
+    }*/

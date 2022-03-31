@@ -12,7 +12,7 @@ namespace HltvParser
 	{
 		public static string topPlayersLink = "https://www.hltv.org/stats/players?rankingFilter=Top20";
 		//public static string PlayersGearListLink = "https://prosettings.net/cs-go-pro-settings-gear-list/";
-		public static async Task<IEnumerable<Player>> GetTopPlayers()
+		public static async Task<List<Player>> GetTopPlayers()
 		{
 			HttpClient httpClient = new HttpClient();
 			var response = await httpClient.GetAsync(topPlayersLink);
@@ -34,7 +34,7 @@ namespace HltvParser
 				string kd = trNodes[0].ChildNodes[i].ChildNodes[11].InnerText;
 				string rating = trNodes[0].ChildNodes[i].ChildNodes[13].InnerText;
 
-				Players.Add(new Player { Id = count, Name = name, Maps = maps, Rounds = rounds, KD_Diff = kddiff, KD = kd, Rating = rating });
+				Players.Add(new Player { /*Id = count,*/ Name = name, Maps = maps, Rounds = rounds, KD_Diff = kddiff, KD = kd, Rating = rating });
 				count++;
 				i++;
 			}
@@ -43,7 +43,7 @@ namespace HltvParser
 
 		}
 
-		public static async Task<IEnumerable<PlayersGear>> GetPlayersGearAsync()
+		public static async Task<List<PlayersGear>> GetPlayersGearAsync()
         {
 			HtmlDocument htmlDocument = new HtmlDocument();
 			var docPath = Environment.CurrentDirectory + "\\HtmlDoc\\gearList.html";
@@ -59,7 +59,7 @@ namespace HltvParser
 				
 				var nodes = trNodes[0].ChildNodes[i].ChildNodes;
 				PlayersGear.Add(new PlayersGear {
-					Id = count,
+					//Id = count,
 					Team = nodes[0].InnerText,
 					Name = nodes[1].InnerText,
 					Role = nodes[2].InnerText,

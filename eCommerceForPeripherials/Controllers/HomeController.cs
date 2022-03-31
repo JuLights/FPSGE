@@ -22,12 +22,10 @@ namespace eCommerceForPeripherials.Controllers
             _db = db;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             //HltvParser.HltvParser parser = new HltvParser.HltvParser();
             //var Players = await parser.GetTopPlayers();
-
-            var kk = await HltvParser.HltvParser.GetPlayersGearAsync();
 
             IEnumerable<Item> itemList = _db.Items;
 

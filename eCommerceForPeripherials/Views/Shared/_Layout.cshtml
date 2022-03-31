@@ -42,6 +42,8 @@
     <link rel="stylesheet" href="../../modal-css/modal.css" />
     <!-- nav css-->
     <link rel="stylesheet" href="../../nav/navv.css" />
+    <!-- pagination css-->
+    <link rel="stylesheet" href="../../pagination-css/pagination.css" />
     <!--for modal-->
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
@@ -157,8 +159,8 @@
                                     </li>
                                     <li><a href="#" style="color:white;">Pro</a>
                                         <ul>
-                                            <li> <a asp-controller="ProPlayerStats" asp-action="Index" style="color:white;">Pro's Stats</a></li>
-                                            <li><a asp-controller="ProPlayerStats" asp-action="PlayersGear" style="color:white;">Pro's Gear</a></li>
+                                            <li><a asp-controller="ProPlayerStats" asp-action="PlayersGear" asp-route-id="1" style="color:white;">Pro's Gear</a></li>
+                                            <li> <a asp-controller="ProPlayerStats" asp-action="Index" asp-route-id="1" style="color:white;">Pro's Stats</a></li>
                                         </ul>
                                     </li>
                                     @*<li>

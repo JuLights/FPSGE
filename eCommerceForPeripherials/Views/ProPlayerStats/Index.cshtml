@@ -1,36 +1,37 @@
-﻿@model IEnumerable<HltvParser.Player>
+﻿@model List<HltvParser.Player>
 
 @{
     ViewData["Title"] = "Index";
+
+    var page = Convert.ToInt32(TempData["page"]);
+    var pageCount = Convert.ToInt32(TempData["pageCount"]);
 }
 
-<h1>Game: Counter-Strike:Global Offensive</h1>
-@if (User.IsInRole("Admin")){
-    <p>
-        <a asp-action="Create">Create New</a>
-    </p>
-}
-<div style="overflow:auto;">
-    <table class="table">
+<h2>Game: Counter-Strike:Global Offensive</h2>
+
+@*<p>
+    <h2></h2>
+</p>*@
+<table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @*@Html.DisplayNameFor(model => model.Name)*@ <span>Name</span>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Maps)
+                @*@Html.DisplayNameFor(model => model.Maps)*@<span>Maps</span>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Rounds)
+                @*@Html.DisplayNameFor(model => model.Rounds)*@<span>Rounds</span>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.KD_Diff)
+                @*@Html.DisplayNameFor(model => model.KD_Diff)*@<span>KD_Diff</span>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.KD)
+                @*@Html.DisplayNameFor(model => model.KD)*@<span>KD</span>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Rating)
+                @*@Html.DisplayNameFor(model => model.Rating)*@<span>Rating</span>
             </th>
             <th></th>
         </tr>
@@ -56,15 +57,38 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Rating)
             </td>
-            <td>
-                @*<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |*@
+            @*<td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                @*<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
-            </td>
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>*@
         </tr>
 }
     </tbody>
 </table>
 
+<div class="pagination" style="display: flex; justify-content:center;" id="myPag">
+  <a asp-controller="ProPlayerStats" asp-action="Index" asp-route-id="1">&laquo;</a>
+    @{
+        for(int i = 1; i <= pageCount-(pageCount-(page+4)); i++)
+        {
+            if (page != pageCount && page < pageCount)
+            {
+                if(page == i)
+                {
+                    <a asp-controller="ProPlayerStats" asp-action="Index" asp-route-id="@i" class="pages active">@i</a>
+                }
+                else
+                {
+                    <a asp-controller="ProPlayerStats" asp-action="Index" asp-route-id="@i" class="pages">@i</a>
+                }
+            }
+            else
+            {
+                <a asp-controller="ProPlayerStats" asp-action="Index" asp-route-id="@pageCount" class="pages active">@pageCount</a>
+                break;
+            }
+        }
+    }
+  <a asp-controller="ProPlayerStats" asp-action="Index" asp-route-id="@pageCount">&raquo;</a>
 </div>
-

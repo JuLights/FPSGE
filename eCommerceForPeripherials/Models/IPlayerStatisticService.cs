@@ -1,5 +1,6 @@
 ﻿using HltvParser;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace eCommerceForPeripherials.Models
 {
@@ -8,7 +9,7 @@ namespace eCommerceForPeripherials.Models
 		IEnumerable<Player> players { get; set; }
 		IEnumerable<PlayersGear> playersGear { get; set; }
 
-		void GetPlayers();
-		void GetPlayersGear();
+		IEnumerable<Player> GetPlayers();
+		IEnumerable<PlayersGear> GetPlayersGear();
 	}
 }
