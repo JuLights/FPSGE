@@ -96,6 +96,7 @@
                                     @if (User.IsInRole("Admin"))
                                     {
                                         <li><a class="fa fa-info-circle" asp-controller="Admin" asp-action="CreateItem" title="add-item"> Add Item</a></li>
+                                        <li><a class="fa fa-info-circle" asp-controller="Admin" asp-action="Products" title="add-item"> Cost of Products</a></li>
                                     }
                                     @if (user.IsSignedIn(User))
                                     {

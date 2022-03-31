@@ -1,0 +1,54 @@
+﻿@model IEnumerable<eCommerceForPeripherials.Models.Admin.Products>
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+<h1>Products</h1>
+
+<p>
+    <a asp-controller="Admin" asp-action="CreateProduct">Create New</a>
+</p>
+<div style="display:flex; justify-content:center;">
+    <table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                <a asp-action="EditProduct" asp-route-id="@item.Id">Edit</a> |
+                @*<a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
+                <a asp-controller="Admin" asp-action="DeleteProduct" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+
+</table>
+
+</div>
+<hr />
+@{
+        decimal totalPrice = 0;
+        foreach(var item in Model)
+        {
+            totalPrice = totalPrice + Convert.ToDecimal(item.Price);
+        }
+        <h2>Total Cost: @totalPrice</h2>
+    }

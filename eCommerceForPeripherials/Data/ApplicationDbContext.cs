@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HltvParser;
+using eCommerceForPeripherials.Models.Admin;
 
 namespace eCommerceForPeripherials.Data
 {
@@ -21,5 +22,6 @@ namespace eCommerceForPeripherials.Data
         public DbSet<Player> Player { get; set; }
 
         public DbSet<PlayersGear> PlayersGear { get; set; }
+        public DbSet<Products> Products { get; set; }
     }
 }

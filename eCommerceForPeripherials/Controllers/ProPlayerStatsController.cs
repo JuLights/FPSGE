@@ -15,10 +15,10 @@ namespace eCommerceForPeripherials.Controllers
         private IPlayerStatisticService _playerStatisticService;
         private readonly ApplicationDbContext _db;
 
-        //private readonly IAppDbContextService _dbService;
-        public ProPlayerStatsController(IPlayerStatisticService playerStatisticService)
+        public ProPlayerStatsController(IPlayerStatisticService playerStatisticService, ApplicationDbContext db)
 		{
             _playerStatisticService = playerStatisticService;
+            _db = db;
         }
 
 
@@ -37,6 +37,8 @@ namespace eCommerceForPeripherials.Controllers
 
             var pageCount = PaginationHelper.GetPageCount(_playerStats, pageResults);
             var PlayersPerPage = PaginationHelper.GetRangedData(pageResults,Id, _playerStats);
+
+
 
             TempData["page"] = $"{Id}";
             TempData["pageCount"] = $"{pageCount}";

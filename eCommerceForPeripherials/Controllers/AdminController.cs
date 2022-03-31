@@ -1,5 +1,6 @@
 ﻿using eCommerceForPeripherials.Data;
 using eCommerceForPeripherials.Models;
+using eCommerceForPeripherials.Models.Admin;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -81,6 +82,74 @@ namespace eCommerceForPeripherials.Controllers
 
             return RedirectToAction("Index","Home");
         }
+
+        [HttpGet]
+        public IActionResult Products()
+        {
+
+            var products = _db.Products.ToList();
+            //await _db.Products.ToList();
+            return View(products);
+        }
+
+        [HttpGet]
+        public IActionResult CreateProduct()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateProduct(Products product)
+        {
+            await _db.Products.AddAsync(product);
+            await _db.SaveChangesAsync();
+
+            return RedirectToAction("Products","Admin");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditProduct(int? Id)
+        {
+            var productForEdit = await _db.Products.FindAsync(Id);
+            if (productForEdit != null)
+            {
+                return View(productForEdit);
+            }
+
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditProduct(Products product)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Products.Update(product);
+                await _db.SaveChangesAsync();
+                return RedirectToAction("Index", "Home");
+            }
+
+            return RedirectToAction("Products","Admin");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> DeleteProduct(int? Id)
+        {
+            //var productForDel =  _db.Products.Where(x => x.Id == Id).FirstOrDefault();
+            //_db.Products.Remove(productForDel);
+
+            var prdForDelete = await _db.Products.FindAsync(Id);
+            if (prdForDelete == null)
+            {
+                return NotFound();
+            }
+            _db.Products.Remove(prdForDelete);
+            await _db.SaveChangesAsync();
+
+            return RedirectToAction("Products", "Admin");
+        }
+
 
     }
 }
