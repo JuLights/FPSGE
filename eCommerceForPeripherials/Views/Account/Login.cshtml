@@ -52,10 +52,10 @@
                 <div class="full">
                     <div class="title-holder">
                         <div class="title-holder-cell text-left">
-                            <h1 class="page-title">Shop Page</h1>
+                            <h1 class="page-title">ავტორიზაცია</h1>
                             <ol class="breadcrumb">
-                                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                                <li class="active">Shop</li>
+                                <li><a asp-controller="Home" asp-action="Index">მთავარი</a></li>
+                                <li class="active">ავტორიზაცია</li>
                             </ol>
                         </div>
                     </div>
@@ -69,29 +69,29 @@
 <div class="row" style="background-color:black; padding-bottom:120px;">
     <div class="login-wrap">
         <div class="login-html" id="login">
-            <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
-            <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+            <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">შესვლა</label>
+            <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">რეგისტრაცია</label>
             <div class="login-form">
                 <form id="account" method="post" asp-controller="Account" asp-action="Login">
                     <div class="sign-in-htm">
                         <div class="group">
-                            <label for="user" class="label">Email</label>
+                            <label for="user" class="label" style="font-size:15px;">ელ.ფოსტა</label>
                             <input id="user" asp-for="Email" type="text" class="input">
                         </div>
                         <div class="group">
-                            <label for="pass" class="label">Password</label>
+                            <label for="pass" class="label" style="font-size:15px;">პაროლი</label>
                             <input id="pass" asp-for="Password" type="password" class="input" data-type="password">
                         </div>
                         <div class="group">
                             <input id="check" type="checkbox" class="check" checked>
-                            <label for="check"><span class="icon"></span> Keep me Signed in</label>
+                            <label for="check"><span class="icon"></span> დამტოვე სისტემაში</label>
                         </div>
                         <div class="group">
-                            <input type="submit" class="button" value="Sign In">
+                            <input type="submit" class="button" value="სისტემაში შესვლა">
                         </div>
                         <div class="hr"></div>
                         <div class="foot-lnk">
-                            <a href="#forgot">Forgot Password?</a>
+                            <a href="#forgot">დაგავიწყდა პაროლი?</a>
                         </div>
                     </div>
 
@@ -99,23 +99,23 @@
                 <form id="register" method="post" asp-controller="Account" asp-action="Register">
                     <div class="sign-up-htm">
                         <div class="group">
-                            <label for="user" class="label">Name</label>
+                            <label for="user" class="label" style="font-size:15px;">სახელი</label>
                             <input id="user" name="Name" type="text" class="input">
                         </div>
                         <div class="group">
-                            <label for="pass" class="label">Email Address</label>
+                            <label for="pass" class="label" style="font-size:15px;">ელ.ფოსტა</label>
                             <input id="pass" type="text" name="Email" class="input">
                         </div>
                         <div class="group">
-                            <label for="pass" class="label">Password</label>
+                            <label for="pass" class="label" style="font-size:15px;">პაროლი</label>
                             <input id="pass" type="password" name="Password" class="input" data-type="password">
                         </div>
                         <div class="group">
-                            <label for="pass" class="label">Repeat Password</label>
+                            <label for="pass" class="label" style="font-size:15px;">გაიმეორეთ პაროლი</label>
                             <input id="pass" type="password" name="ConfirmPassword" class="input" data-type="password">
                         </div>
                         <div class="group">
-                            <input type="submit" class="button" value="Sign Up">
+                            <input type="submit" class="button" value="რეგისტრაცია">
                         </div>
                         <div class="hr"></div>
                         <div class="foot-lnk">

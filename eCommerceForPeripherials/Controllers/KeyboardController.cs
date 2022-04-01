@@ -18,6 +18,8 @@ namespace eCommerceForPeripherials.Controllers
 
         public IActionResult Index()
         {
+            TempData["Keyboard"] = "active";
+
             IEnumerable<Item> itemList = _db.Items.Where(x=>x.ItemName == "Keyboard");
 
             return View(itemList.OrderByDescending(x => x.Id));

@@ -12,10 +12,11 @@
                 <div class="full">
                     <div class="title-holder">
                         <div class="title-holder-cell text-left">
-                            <h1 class="page-title">Shopping Cart</h1>
+                            <h1 class="page-title">კალათა</h1>
                             <ol class="breadcrumb">
-                                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                                <li class="active">Shopping Cart</li>
+                                <li><a asp-controller="Home" asp-action="Index">მთავარი</a></li>
+                                <li>მაღაზია</li>
+                                <li class="active">კალათა</li>
                             </ol>
                         </div>
                     </div>
@@ -25,7 +26,7 @@
     </div>
 </div>
 <!-- end inner page banner -->
-<div class="section padding_layout_1 Shopping_cart_section">
+<div class="section padding_layout_1 Shopping_cart_section" style="background-color:black;">
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-md-12">
@@ -33,10 +34,10 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Product</th>
-                                <th>Quantity</th>
-                                <th class="text-center">Price</th>
-                                <th class="text-center">Total</th>
+                                <th>პროდუქტი</th>
+                                <th>რაოდენობა</th>
+                                <th class="text-center">ფასი</th>
+                                <th class="text-center">სულ</th>
                                 <th> </th>
                             </tr>
                         </thead>
@@ -51,11 +52,11 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="col-sm-1 col-md-1" style="text-align: center">
+                                <td class="col-sm-1 col-md-1" style="padding-top:4%;">
                                     <input class="form-control" value="1" min="1" max="1" type="number">
                                 </td>
-                                <td class="col-sm-1 col-md-1 text-center"><p class="price_table">@Html.DisplayFor(model => model.Price)₾</p></td>
-                                <td class="col-sm-1 col-md-1 text-center"><p class="price_table">@Html.DisplayFor(model => model.Price)₾</p></td>
+                                <td class="col-sm-1 col-md-1 text-center"><p class="price_table" style="color:#b2b2b2;">@Html.DisplayFor(model => model.Price)₾</p></td>
+                                <td class="col-sm-1 col-md-1 text-center"><p class="price_table" style="color:#b2b2b2;">@Html.DisplayFor(model => model.Price)₾</p></td>
                                 <td class="col-sm-1 col-md-1"><a class="bt_main" asp-controller="Home" asp-action="Index"><i class="fa fa-trash"></i> Remove</a></td>
                             </tr>
                         </tbody>
@@ -78,24 +79,24 @@
                     <table>
                         <tbody>
                             <tr class="head-table">
-                                <td><h5>Cart Totals</h5></td>
+                                <td><h5>კალათა</h5></td>
                                 <td class="text-right"></td>
                             </tr>
                             <tr>
-                                <td><h4>Subtotal</h4></td>
+                                <td><h4>სულ</h4></td>
                                 <td class="text-right"><h4>@Html.DisplayFor(model => model.Price)₾</h4></td>
                             </tr>
                             <tr>
-                                <td><h5>Estimated shipping</h5></td>
+                                <td><h5>მიტანა</h5></td>
                                 <td class="text-right"><h4>0.00₾</h4></td>
                             </tr>
                             <tr>
-                                <td><h3>Total</h3></td>
+                                <td><h3>მთლიანად</h3></td>
                                 <td class="text-right"><h4>@Html.DisplayFor(model => model.Price)₾</h4></td>
                             </tr>
                             <tr>
                                 @*<td><button type="button" class="button">Continue Shopping</button></td>*@
-                                <td class="col-sm-1 col-md-1"><a asp-controller="Shop" asp-action="Checkout" asp-route-Id="@Model.Id" class="bt_main" style="color:white;"><i class="fa fa-check" style="color:white;"> Checkout</i></a></td>
+                                <td class="col-sm-1 col-md-1"><a asp-controller="Shop" asp-action="Checkout" asp-route-Id="@Model.Id" class="bt_main" style="color:white;"><i class="fa fa-check" style="color:white;"> შეძენა</i></a></td>
                             </tr>
                         </tbody>
                     </table>

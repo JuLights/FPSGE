@@ -95,18 +95,18 @@
                                     <li><a class="fa fa-instagram" href="https://www.instagram.com" title="Instagram" target="_blank"></a></li>*@
                                     @if (User.IsInRole("Admin"))
                                     {
-                                        <li><a class="fa fa-info-circle" asp-controller="Admin" asp-action="CreateItem" title="add-item"> Add Item</a></li>
-                                        <li><a class="fa fa-info-circle" asp-controller="Admin" asp-action="Products" title="add-item"> Cost of Products</a></li>
+                                        <li><a class="fa fa-info-circle" asp-controller="Admin" asp-action="CreateItem" title="add-item"> ნივთის დამატება</a></li>
+                                        <li><a class="fa fa-info-circle" asp-controller="Admin" asp-action="Products" title="add-item"> ხარჯთაღრიცხვა</a></li>
                                     }
                                     @if (user.IsSignedIn(User))
                                     {
 
-                                        <li><a class="fa fa-sign-out" asp-controller="Account" asp-action="LogOff" title="sign-out"> Sign Out</a></li>
+                                        <li><a class="fa fa-sign-out" asp-controller="Account" asp-action="LogOff" title="sign-out">სისტემიდან გასვლა</a></li>
                                     }
                                     else
                                     {
                                         
-                                    <li><a class="fa fa-sign-in" @*asp-controller="Account" asp-action="Login"*@ href="/Account/Login/#login"  title="sign-out"> Sign In</a></li>
+                                    <li><a class="fa fa-sign-in" @*asp-controller="Account" asp-action="Login"*@ href="/Account/Login/#login"  title="sign-out"> სისტემაში შესვლა</a></li>
                                     @*<li><a class="fa fa-sign-in" asp-controller="Account" asp-action="Register" title="sign-out"> Sign Up</a></li>*@
                                     }
 
@@ -134,57 +134,25 @@
                         <!-- menu start -->
                         <div class="menu_side">
                             <div id="navbar_menu">
-                                <ul class="first-ul">
-                                    <li style="color:white;">
-                                        <a class="active" asp-controller="Home" asp-action="Index" style="color:white;">Home</a>
-                                        @*<ul>
-                                            <li><a href="it_home.html">It Home Page</a></li>
-                                            <li><a href="it_home_dark.html">It Dark Home Page</a></li>
-                                        </ul>*@
+                                <ul id="ul" class="first-ul">
+                                    <li>
+                                        <a id="mainId" class="@TempData["Home"]" asp-controller="Home" asp-action="Index" >მთავარი</a>
                                     </li>
-                                    <li style="color:white;"><a asp-controller="Mouse" asp-action="Index" style="color:white;">Mouse</a></li>
-                                    <li style="color:white;">
-                                        <a asp-controller="Keyboard" asp-action="Index" style="color:white;">Keyboard</a>
-                                        @*<ul>
-                                            <li><a href="it_service_list.html">Services list</a></li>
-                                            <li><a href="it_service_detail.html">Services Detail</a></li>
-                                        </ul>*@
+                                    <li><a id="mouseId" class="@TempData["Mouse"]" asp-controller="Mouse" asp-action="Index">მაუსი</a></li>
+                                    <li>
+                                        <a id="keyboardId" class="@TempData["Keyboard"]" asp-controller="Keyboard" asp-action="Index">კლავიატურა</a>
                                     </li>
                                     <li>
-                                        <a asp-controller="Headset" asp-action="Index" style="color:white;">Headset</a>
-                                        @*<ul>
-                                            <li><a href="it_blog.html">Blog List</a></li>
-                                            <li><a href="it_blog_grid.html">Blog Grid</a></li>
-                                            <li><a href="it_blog_detail.html">Blog Detail</a></li>
-                                        </ul>*@
+                                        <a id="headsetId" class="@TempData["Headset"]" asp-controller="Headset" asp-action="Index">ყურსასმენები</a>
                                     </li>
-                                    <li><a href="#" style="color:white;">Pro</a>
+                                    <li><a id="peripherId" class="@TempData["ProPlayers"]" href="#">პრო მოთამაშეების</a>
                                         <ul>
-                                            <li><a asp-controller="ProPlayerStats" asp-action="PlayersGear" asp-route-id="1" style="color:white;">Pro's Gear</a></li>
-                                            <li> <a asp-controller="ProPlayerStats" asp-action="Index" asp-route-id="1" style="color:white;">Pro's Stats</a></li>
-                                        </ul>
-                                    </li>
-                                    @*<li>
-                                        <a href="#">Pages</a>
-                                        <ul>
-                                            <li><a href="it_career.html">Career</a></li>
-                                            <li><a href="it_price.html">Pricing</a></li>
-                                            <li><a href="it_faq.html">Faq</a></li>
-                                            <li><a href="it_privacy_policy.html">Privacy Policy</a></li>
-                                            <li><a href="it_error.html">Error 404</a></li>
+                                            <li><a asp-controller="ProPlayerStats" asp-action="PlayersGear" asp-route-id="1">პერიფერია</a></li>
+                                            <li> <a asp-controller="ProPlayerStats" asp-action="Index" asp-route-id="1">სტატისტიკა</a></li>
                                         </ul>
                                     </li>
                                     <li>
-                                        <a href="it_shop.html">Shop</a>
-                                        <ul>
-                                            <li><a href="it_shop.html">Shop List</a></li>
-                                            <li><a href="it_shop_detail.html">Shop Detail</a></li>
-                                            <li><a href="it_cart.html">Shopping Cart</a></li>
-                                            <li><a href="it_checkout.html">Checkout</a></li>
-                                        </ul>
-                                    </li>*@
-                                    <li>
-                                        <a asp-controller="Home" asp-action="Contact" style="color:white;">Contact</a>
+                                        <a id="contactId" class="@TempData["Contact"]" asp-controller="Home" asp-action="Contact">კონტაქტი</a>
                                         
                                     </li>
                                 </ul>
@@ -287,7 +255,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="main-heading left_text">
-                                <h2>It Next Theme</h2>
+                                <h2>ჩვენი სოციალური ქსელები</h2>
                             </div>
                             @*<p>Tincidunt elit magnis nulla facilisis. Dolor sagittis maecenas. Sapien nunc amet ultrices, dolores sit ipsum velit purus aliquet, massa fringilla leo orci.</p>*@
                             <ul class="social_icons">
@@ -298,37 +266,37 @@
                         </div>
                         <div class="col-md-6">
                             <div class="main-heading left_text">
-                                <h2>Additional links</h2>
+                                <h2>დამატებითი მისამართები</h2>
                             </div>
                             <ul class="footer-menu">
-                                <li><a href="#it_about.html"><i class="fa fa-angle-right"></i> About us</a></li>
-                                <li><a href="#it_term_condition.html"><i class="fa fa-angle-right"></i> Terms and conditions</a></li>
-                                <li><a href="#it_privacy_policy.html"><i class="fa fa-angle-right"></i> Privacy policy</a></li>
+                                <li><a href="#it_about.html"><i class="fa fa-angle-right"></i> ჩვენს შესახებ</a></li>
+                                <li><a href="#it_term_condition.html"><i class="fa fa-angle-right"></i> წესები და პირობები</a></li>
+                                <li><a href="#it_privacy_policy.html"><i class="fa fa-angle-right"></i> Კონფიდენციალურობის პოლიტიკა</a></li>
                                 @*<li><a href="it_news.html"><i class="fa fa-angle-right"></i> News</a></li>*@
-                                <li><a asp-action="contact" asp-controller="home"><i class="fa fa-angle-right"></i> Contact us</a></li>
+                                <li><a asp-action="contact" asp-controller="home"><i class="fa fa-angle-right"></i> დაგვიკავშირდით</a></li>
                             </ul>
                         </div>
                         <div class="col-md-6">
                             <div class="main-heading left_text">
-                                <h2>Services</h2>
+                                <h2>სერვისები</h2>
                             </div>
                             <ul class="footer-menu">
                                 @*<li><a href="it_data_recovery.html"><i class="fa fa-angle-right"></i> Data recovery</a></li>*@
-                                <li><a href="#it_computer_repair.html"><i class="fa fa-angle-right"></i> PC peripherials</a></li>
-                                <li><a href="#it_computer_repair.html"><i class="fa fa-angle-right"></i> Hardware upgrade</a></li>
-                                <li><a href="#it_computer_repair.html"><i class="fa fa-angle-right"></i> Computer repair</a></li>
+                                <li><a href="#it_computer_repair.html"><i class="fa fa-angle-right"></i> კომპიუტერის პერიფერია</a></li>
+                                <li><a href="#it_computer_repair.html"><i class="fa fa-angle-right"></i> მოწყობილობის განახლება</a></li>
+                                <li><a href="#it_computer_repair.html"><i class="fa fa-angle-right"></i> კომპიუტერის შეკეთება</a></li>
                                 @*<li><a href="it_mobile_service.html"><i class="fa fa-angle-right"></i> Mobile service</a></li>*@
                                 @*<li><a href="it_network_solution.html"><i class="fa fa-angle-right"></i> Network solutions</a></li>*@
-                                <li><a href="#it_techn_support.html"><i class="fa fa-angle-right"></i> Technical support</a></li>
+                                <li><a href="#it_techn_support.html"><i class="fa fa-angle-right"></i> ტექნიკური დახმარება</a></li>
                             </ul>
                         </div>
                         <div class="col-md-6">
                             <div class="main-heading left_text">
-                                <h2>Contact us</h2>
+                                <h2>დაგვიკავშირდით</h2>
                             </div>
                             <p>
                                 @*<a asp-action="contact" asp-controller="home">Contact</a><br>*@
-                                Georgia, Tbilisi<br>
+                                საქართველო, თბილისი<br>
                                 <span style="font-size:18px;"><a href="tel:+995597406036">+995 597 40 60 36</a></span>
                             </p>
                             <div class="footer_mail-section">
@@ -336,7 +304,7 @@
                                     <fieldset>
                                         <div class="field">
                                             <input placeholder="Email" type="text"><br />
-                                            <label for="subbut">Subscribe Our Newsletter</label><button id="subbut" class="button_custom"><i class="fa fa-envelope" aria-hidden="true"></i></button>
+                                            <label for="subbut">გამოგვიწერეთ ჩვენი ელ.ფოსტა</label><button id="subbut" class="button_custom"><i class="fa fa-envelope" aria-hidden="true"></i></button>
                                         </div>
                                     </fieldset>
                                 </form>
@@ -351,6 +319,9 @@
         </div>
     </footer>
     <!-- end footer -->
+
+
+    
     <!-- js section -->
     @*<script src="../../js/modal.js"></script>*@
     <script src="../../js/jquery.min.js"></script>
@@ -361,6 +332,22 @@
     <script src="../../js/wow.js"></script>
     <!-- custom js -->
     <script src="../../js/custom.js"></script>
+
+    @*<script>
+        // Add active class to the current button (highlight it)
+        var ul = document.getElementById('ul');
+        var menuItems = ul.getElementsByClassName("menuitems");
+
+        for (var i = 0; i < menuItems.length; i++) {
+            console.log(menuItems[i]);
+          menuItems[i].addEventListener("click", function() {
+            var current = document.getElementsByClassName("active");
+            current[0].className = current[0].className.replace("menuitems active", "menuitems");
+            this.className += " active";
+          });
+        }
+
+        </script>*@
 
     @*<script>
 

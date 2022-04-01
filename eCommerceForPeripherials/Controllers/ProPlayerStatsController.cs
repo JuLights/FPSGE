@@ -26,6 +26,7 @@ namespace eCommerceForPeripherials.Controllers
         //[Route("{id:int}")]
         public async Task<ActionResult<List<Player>>> Index(int Id)
         {
+            TempData["ProPlayers"] = "active";
             var playerStats = _playerStatisticService.GetPlayers();
 
             if (playerStats == null)
@@ -50,7 +51,8 @@ namespace eCommerceForPeripherials.Controllers
         //[Route("{id:int}")]
         public async Task<IActionResult> PlayersGear(int Id)
         {
-            
+            TempData["ProPlayers"] = "active";
+
             var playersGear = _playerStatisticService.GetPlayersGear();
             if (playersGear == null)
                 return NotFound();

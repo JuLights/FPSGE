@@ -27,6 +27,8 @@ namespace eCommerceForPeripherials.Controllers
             //HltvParser.HltvParser parser = new HltvParser.HltvParser();
             //var Players = await parser.GetTopPlayers();
 
+            TempData["Home"] = "active";
+
             IEnumerable<Item> itemList = _db.Items;
 
             return View(itemList.OrderByDescending(x=>x.Id));
@@ -59,7 +61,7 @@ namespace eCommerceForPeripherials.Controllers
         [HttpGet]
         public IActionResult Contact()
         {
-
+            TempData["Contact"] = "active";
             return View();
         }
 
