@@ -29,9 +29,9 @@ namespace eCommerceForPeripherials.Controllers
 
             TempData["Home"] = "active";
 
-            IEnumerable<Item> itemList = _db.Items;
+            var itemList = _db.Items;
 
-            return View(itemList.OrderByDescending(x=>x.Id));
+            return View(itemList.OrderByDescending(x=>x.Id).ToList());
         }
 
         [HttpGet]

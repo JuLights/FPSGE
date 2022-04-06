@@ -59,6 +59,8 @@ namespace eCommerceForPeripherials.Controllers
 
             var _playersGear = playersGear.ToList();
 
+            //SetupLinksForProducts(_playersGear, _db.Items.ToList());
+
             var pageResults = 20f; //20 item per page
 
             var pageCount = PaginationHelper.GetPageCount(_playersGear, pageResults);
@@ -70,6 +72,61 @@ namespace eCommerceForPeripherials.Controllers
 
             return View(PlayersGearPerPage);
         }
+
+        public void SetupLinksForProducts(List<PlayersGear> playersGears, List<Item> items)
+        {
+            List<Item> headsetList = new List<Item>();
+            List<Item> keyboardList = new List<Item>();
+            List<Item> mouseList = new List<Item>();
+
+            foreach (var item in items)
+            {
+                if (item.ItemName.ToLower() == "headset")
+                {
+                    headsetList.Add(item);
+                }
+                if (item.ItemName.ToLower() == "keyboard")
+                {
+                    keyboardList.Add(item);
+                }
+                if (item.ItemName.ToLower() == "mouse")
+                {
+                    mouseList.Add(item);
+                }
+            }
+
+            Dictionary<int, string> foundedKeyboardList = new Dictionary<int, string>();
+
+            //Keyboard
+            for (int j = 0; j < keyboardList.Count; j++)
+            {
+                for (int i = 0; i < playersGears.Count; i++)
+                {
+                    if (keyboardList[j].Name.ToLower() == playersGears[i].KeyBoard.ToLower())
+                    {
+                        //1 varianti PlayersGear-is tables bazashi mivamato link chvens saitze produqciis
+                        string linktoAdd = $"https://fps.ge/shop/details/{keyboardList[j].Id}";
+                        foundedKeyboardList.Add(playersGears[i].Id, linktoAdd);
+                    }
+                }
+
+            }
+
+            foreach (var item in foundedKeyboardList)
+            {
+                var plg = _db.PlayersGear.Where(x => x.Id == item.Key).FirstOrDefault();
+                plg.KeyBoardLink = item.Value;
+                //var playerWithLink = (PlayersGear)plg;
+
+                _db.PlayersGear.Update(plg);
+                _db.SaveChanges();
+            }
+
+        }
+
+
+
+
 
     }
 

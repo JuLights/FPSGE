@@ -205,7 +205,7 @@
 	#navbar_menu.small-screen ul ul li a {
 		width: 100%;
 		border-bottom: 0;
-		color: #FFF !important;
+		color: #000 !important;
 	}
 	#navbar_menu.small-screen ul ul li a:hover {
 		width: 100%;

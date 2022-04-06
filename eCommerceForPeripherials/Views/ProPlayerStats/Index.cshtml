@@ -7,13 +7,13 @@
     var pageCount = Convert.ToInt32(TempData["pageCount"]);
 }
 
-<h2>თამაშის სახეობა: Counter-Strike:Global Offensive</h2>
+<h3 style="padding-left:25px; color:#141414;">თამაშის სახეობა: Counter-Strike:Global Offensive</h3>
 
 @*<p>
     <h2></h2>
 </p>*@
 <table class="table">
-    <thead>
+    <thead style="text-align:center;">
         <tr>
             <th>
                 @*@Html.DisplayNameFor(model => model.Name)*@ <span>სახელი</span>
@@ -36,7 +36,7 @@
             <th></th>
         </tr>
     </thead>
-    <tbody>
+    <tbody style="text-align:center;">
 @foreach (var item in Model) {
         <tr>
             <td>

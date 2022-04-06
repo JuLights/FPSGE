@@ -44,6 +44,10 @@
     <link rel="stylesheet" href="../../nav/navv.css" />
     <!-- pagination css-->
     <link rel="stylesheet" href="../../pagination-css/pagination.css" />
+    <!--font awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--dark checkbox-->
+    <link rel="stylesheet" href="../../css/darkcheckbox.css" />
     <!--for modal-->
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
@@ -60,27 +64,42 @@
     <!-- header -->
     <header id="default_header" class="header_style_1">
         <!-- header top -->
-        <div class="header_top">
+        <div id="topNav" class="header_top">
             <div class="container">
                 <div class="row">
                     <div class="col-md-8">
                         <div class="full">
                             <div class="topbar-left">
+                                @*<button
+                                id="light-mode-toggle"
+                                class="light-mode-toggle"
+                                >Switch
+                                </button>*@
                                 <ul class="list-inline">
                                     @{
                                         if (User.IsInRole("Admin"))
                                         {
-                                            <li> <span class="topbar-label"><i class="fa  fa-heart"></i></span> <span class="topbar-hightlight">Hello, Admin</span> </li>
+                                            <li> <span class="topbar-label"><i id="heart" class="fa  fa-heart"></i></span> <span id="hello" class="topbar-hightlight">Hello, Admin</span> </li>
+                                            <li><a class="fa fa-info-circle" asp-controller="Admin" asp-action="CreateItem" title="add-item"> ნივთის დამატება</a></li>
+                                            <li><a class="fa fa-info-circle" asp-controller="Admin" asp-action="Products" title="add-item"> ხარჯთაღრიცხვა</a></li>
                                         }
                                         if (User.IsInRole("User"))
                                         {
-                                            <li> <span class="topbar-label"><i class="fa  fa-heart"></i></span> <span class="topbar-hightlight">Hello, User</span> </li>
+                                            <li> <span class="topbar-label"><i id="homeIcon" class="fa  fa-home"></i></span> <span id="tbilisi" class="topbar-hightlight">Tbilisi,Georgia , 0102</span> </li>
+                                            <li> <span class="topbar-label"><i id="infoIcon" class="fa fa-envelope-o"></i></span> <span class="topbar-hightlight"><a href="mailto:info@fps.ge" id="mail">info@fps.ge</a></span> </li>
+                                            <li> <span class="topbar-label"><i id="heart" class="fa  fa-heart"></i></span> <span id="hello" class="topbar-hightlight">Hello, User</span> </li>
+
                                         }
                                         
                                     }
-                                    <li> <span class="topbar-label"><i class="fa  fa-home"></i></span> <span class="topbar-hightlight">Tbilisi,Georgia , 0102</span> </li>
-                                    <li> <span class="topbar-label"><i class="fa fa-envelope-o"></i></span> <span class="topbar-hightlight"><a href="mailto:info@fps.ge">info@fps.ge</a></span> </li>
                                 </ul>
+                            </div>
+                            <div class="topbar-right">
+                                <input type="checkbox" class="checkbox" id="checkbox" hidden checked />
+                                <label for="checkbox" class="label"/>
+                                <i class="fa fa-moon-o"></i>
+                                <i class="fa fa-sun-o"></i>
+                                <div class="ball"></div>
                             </div>
                         </div>
                     </div>
@@ -93,7 +112,7 @@
                                     <li><a class="fa fa-twitter" href="https://twitter.com" title="Twitter" target="_blank"></a></li>
                                     <li><a class="fa fa-linkedin" href="https://www.linkedin.com" title="LinkedIn" target="_blank"></a></li>
                                     <li><a class="fa fa-instagram" href="https://www.instagram.com" title="Instagram" target="_blank"></a></li>*@
-                                    @if (User.IsInRole("Admin"))
+                                    @*@if (User.IsInRole("Admin"))
                                     {
                                         <li><a class="fa fa-info-circle" asp-controller="Admin" asp-action="CreateItem" title="add-item"> ნივთის დამატება</a></li>
                                         <li><a class="fa fa-info-circle" asp-controller="Admin" asp-action="Products" title="add-item"> ხარჯთაღრიცხვა</a></li>
@@ -106,9 +125,8 @@
                                     else
                                     {
                                         
-                                    <li><a class="fa fa-sign-in" @*asp-controller="Account" asp-action="Login"*@ href="/Account/Login/#login"  title="sign-out"> სისტემაში შესვლა</a></li>
-                                    @*<li><a class="fa fa-sign-in" asp-controller="Account" asp-action="Register" title="sign-out"> Sign Up</a></li>*@
-                                    }
+                                    <li><a class="fa fa-sign-in" href="/Account/Login/#inner_banner"  title="sign-out"> სისტემაში შესვლა</a></li>
+                                    }*@
 
                                 </ul>
                             </div>
@@ -122,7 +140,7 @@
         </div>
         <!-- end header top -->
         <!-- header bottom -->
-        <div class="header_bottom" style="background-color:black;">
+        <div id="botNav" class="header_bottom" style="background-color:black;">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
@@ -134,7 +152,7 @@
                         <!-- menu start -->
                         <div class="menu_side">
                             <div id="navbar_menu">
-                                <ul id="ul" class="first-ul">
+                                <ul class="first-ul">
                                     <li>
                                         <a id="mainId" class="@TempData["Home"]" asp-controller="Home" asp-action="Index" >მთავარი</a>
                                     </li>
@@ -147,21 +165,33 @@
                                     </li>
                                     <li><a id="peripherId" class="@TempData["ProPlayers"]" href="#">პრო მოთამაშეების</a>
                                         <ul>
-                                            <li><a asp-controller="ProPlayerStats" asp-action="PlayersGear" asp-route-id="1">პერიფერია</a></li>
-                                            <li> <a asp-controller="ProPlayerStats" asp-action="Index" asp-route-id="1">სტატისტიკა</a></li>
+                                            <li><a asp-controller="ProPlayerStats" asp-action="PlayersGear" asp-route-id="1" id="per">პერიფერია</a></li>
+                                            <li> <a asp-controller="ProPlayerStats" asp-action="Index" asp-route-id="1" id="stat">სტატისტიკა</a></li>
                                         </ul>
                                     </li>
                                     <li>
                                         <a id="contactId" class="@TempData["Contact"]" asp-controller="Home" asp-action="Contact">კონტაქტი</a>
-                                        
                                     </li>
+                                    @if (user.IsSignedIn(User))
+                                    {
+
+                                        <li><a class="fa fa-sign-out" asp-controller="Account" asp-action="LogOff" title="sign-out"> გასვლა</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                        <a id="authId" class="fa fa-sign-in @TempData["Authorization"]" href="/Account/Login/#inner_banner"  title="sign-out"> შესვლა</a>
+                                        </li>
+                                    @*<li><a class="fa fa-sign-in" href="/Account/Login/#inner_banner"  title="sign-out"> სისტემაში შესვლა</a></li>*@
+                                    }
+
                                 </ul>
                             </div>
-                            <div class="search_icon">
+                           @* <div class="search_icon">
                                 <ul>
-                                    <li><a asp-controller="Home" asp-action="Search" asp-route-id="" data-toggle="modal" data-target="#search_bar"><i class="fa fa-search" style="color:white;" aria-hidden="true"></i></a></li>
+                                    <li><a asp-controller="Home" asp-action="Search" asp-route-id="" data-toggle="modal" data-target="#search_bar"><i id="searchIcon" class="fa fa-search" style="color:white;" aria-hidden="true"></i></a></li>
                                 </ul>
-                            </div>
+                            </div>*@
                         </div>
                         <!-- menu end -->
                     </div>
@@ -200,9 +230,9 @@
                         <div class="col-lg-8 col-md-8 col-sm-8 offset-lg-2 offset-md-2 offset-sm-2 col-xs-10 col-xs-offset-1">
                             <div class="navbar-search">
                                 <form action="#" method="get" id="search-global-form" class="search-global">
-                                    <input type="text" placeholder="Type to search" autocomplete="off" name="s" id="search" value="" class="search-global__input">
+                                    <input type="text" placeholder="მოძებნე..." autocomplete="off" name="s" id="search" value="" class="search-global__input">
                                     <button class="search-global__btn"><i class="fa fa-search"></i></button>
-                                    <div class="search-global__note">Begin typing your search above and press return to search.</div>
+                                    <div class="search-global__note">მოძებნე ნებისმიერი პერიფერია..</div>
                                 </form>
                             </div>
                         </div>
@@ -324,7 +354,9 @@
     
     <!-- js section -->
     @*<script src="../../js/modal.js"></script>*@
+    @*<script src="../../js/lightmode.js"></script>*@
     <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/darkcheckbox.js"></script>
     <script src="../../js/bootstrap.min.js"></script>
     <!-- menu js -->
     <script src="../../js/menumaker.js"></script>

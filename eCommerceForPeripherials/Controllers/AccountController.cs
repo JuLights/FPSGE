@@ -32,6 +32,7 @@ namespace eCommerceForPeripherials.Controllers
 
         public IActionResult Login()
         {
+            TempData["Authorization"] = "active";
             //var defaultClaims = new List<Claim>
             //{
             //    new Claim(ClaimTypes.Name,"satish")

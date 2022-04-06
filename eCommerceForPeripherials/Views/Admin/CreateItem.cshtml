@@ -4,6 +4,7 @@
     ViewData["Title"] = "CreateItem";
 }
 
+
 <div class="row" style="padding-left:25%;">
     <div class="col-md-4">
         <form asp-action="CreateItem">
@@ -86,6 +87,7 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

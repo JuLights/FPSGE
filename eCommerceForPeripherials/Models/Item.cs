@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,6 +11,8 @@ namespace eCommerceForPeripherials.Models
     {
         [Key]
         public int Id { get; set; }
+        //[DatabaseGeneratedAttribute(DatabaseGeneratedOption.)]
+        //public int ItemId { get; set; }
         public string ItemImageUrl { get; set; }
         public string ItemName { get; set; } //mouse, keyboard, headset
         public string ItemCondition { get; set; } // axali, axalivit, meoradi

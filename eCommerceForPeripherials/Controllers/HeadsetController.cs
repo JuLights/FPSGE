@@ -20,7 +20,7 @@ namespace eCommerceForPeripherials.Controllers
             TempData["Headset"] = "active";
             IEnumerable<Item> itemList = _db.Items.Where(x => x.ItemName == "Headset");
 
-            return View(itemList.OrderByDescending(x => x.Id));
+            return View(itemList.OrderByDescending(x => x.Id).ToList());
         }
     }
 }

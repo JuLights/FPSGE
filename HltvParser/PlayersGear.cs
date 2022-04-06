@@ -17,6 +17,7 @@ namespace HltvParser
         public string Name { get; set; }
         public string Role { get; set; }
         public string Mouse { get; set; }
+        public string MouseLink { get; set; }
         public string MouseHz { get; set; }
         public string DPI { get; set; }
         public string Sens { get; set; }
@@ -33,7 +34,9 @@ namespace HltvParser
         public string ScalingMode { get; set; }
         public string MousePad { get; set; }
         public string KeyBoard { get; set; }
+        public string KeyBoardLink { get; set; }
         public string Headset { get; set; }
+        public string HeadsetLink { get; set; }
         public string CFG { get; set; }
 
     }

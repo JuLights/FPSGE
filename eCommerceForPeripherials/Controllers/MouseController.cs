@@ -22,7 +22,7 @@ namespace eCommerceForPeripherials.Controllers
 
             IEnumerable<Item> itemList = _db.Items.Where(x=>x.ItemName == "Mouse");
 
-            return View(itemList.OrderByDescending(x => x.Id));
+            return View(itemList.OrderByDescending(x => x.Id).ToList());
         }
 
     }

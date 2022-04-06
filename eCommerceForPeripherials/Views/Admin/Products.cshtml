@@ -4,14 +4,14 @@
     ViewData["Title"] = "Products";
 }
 
-<h1>Products</h1>
+<h1 style="text-align:center;">Products</h1>
 
 <p>
-    <a asp-controller="Admin" asp-action="CreateProduct">Create New</a>
+    <a style="color:blue; text-align:center;" asp-controller="Admin" asp-action="CreateProduct">Create New</a>
 </p>
-<div style="display:flex; justify-content:center;">
+<div style="justify-content:center; text-align:center;">
     <table class="table">
-    <thead>
+    <thead style="text-align:center;">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.ProductName)
@@ -22,7 +22,7 @@
             <th></th>
         </tr>
     </thead>
-    <tbody>
+    <tbody style="text-align:center;">
 @foreach (var item in Model) {
         <tr>
             <td>
@@ -50,5 +50,5 @@
         {
             totalPrice = totalPrice + Convert.ToDecimal(item.Price);
         }
-        <h2>Total Cost: @totalPrice</h2>
+        <h2 style="text-align:center;">Total Cost: @totalPrice</h2>
     }

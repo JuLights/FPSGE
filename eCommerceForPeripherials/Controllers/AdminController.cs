@@ -1,6 +1,7 @@
 ﻿using eCommerceForPeripherials.Data;
 using eCommerceForPeripherials.Models;
 using eCommerceForPeripherials.Models.Admin;
+using eCommerceForPeripherials.Models.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -30,7 +31,7 @@ namespace eCommerceForPeripherials.Controllers
         //add item in db method
         public IActionResult CreateItem()
         {
-
+            ViewBag.Response = "";
             return View();
         }
 
@@ -42,6 +43,8 @@ namespace eCommerceForPeripherials.Controllers
             {
                 return NotFound();
             }
+            var itemForDeleteId = _db.Items.ToList().LastOrDefault().Id;
+            await _db.LastItemIds.AddAsync(new LastItemIds { LastItemId = itemForDeleteId }); //!!!important
             _db.Items.Remove(obj);
             await _db.SaveChangesAsync();
 
@@ -64,11 +67,36 @@ namespace eCommerceForPeripherials.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditItem(Item item)
         {
+            var gearLink = new GearLinkHelper();
+            string response = "";
+
+
             if (ModelState.IsValid)
             {
-                _db.Items.Update(item);
-                await _db.SaveChangesAsync();
-                return RedirectToAction("Index", "Home");
+                if (item.ItemName.ToLower() == "headset")
+                {
+                    response = await gearLink.CheckAndAddHeadsetInPros(item, _db, "edit");
+                }
+
+                if (item.ItemName.ToLower() == "keyboard")
+                {
+                    response = await gearLink.CheckAndAddKeyboardInPros(item, _db, "edit");
+                }
+                if (item.ItemName.ToLower() == "mouse")
+                {
+                    response = await gearLink.CheckAndAddMouseInPros(item, _db, "edit");
+                }
+
+                TempData["affected"] = response;
+                var itemForEdit = await _db.Items.FindAsync(item.Id);
+                itemForEdit.Name = item.Name;
+                if(itemForEdit != null)
+                {
+                    _db.Items.Update(itemForEdit);
+                    await _db.SaveChangesAsync();
+                }
+                
+                return View("ItemAddedResponse", TempData["affected"]);
             }
 
             return View();
@@ -77,11 +105,39 @@ namespace eCommerceForPeripherials.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateItem(Item item)
         {
+            var gearLink = new GearLinkHelper();
+            string response = "";
+
             await _db.Items.AddAsync(item);
+            _db.SaveChanges();
+
+            await _db.LastItemIds.AddAsync(new LastItemIds { LastItemId = _db.Items.ToList().LastOrDefault().Id });
             await _db.SaveChangesAsync();
 
-            return RedirectToAction("Index","Home");
+            if (item.ItemName.ToLower() == "headset")
+            {
+                response = await gearLink.CheckAndAddHeadsetInPros(item, _db, "add");
+            }
+
+            if (item.ItemName.ToLower() == "keyboard")
+            {
+                response = await gearLink.CheckAndAddKeyboardInPros(item, _db, "add");
+            }
+            if (item.ItemName.ToLower() == "mouse")
+            {
+                response = await gearLink.CheckAndAddMouseInPros(item, _db, "add");
+            }
+
+            TempData["affected"] = response;
+
+            //ViewBag["affected"] = response;
+
+            
+
+            return View("ItemAddedResponse", TempData["affected"]);
+            //return RedirectToAction("Index","Home");
         }
+
 
         [HttpGet]
         public IActionResult Products()
@@ -95,7 +151,6 @@ namespace eCommerceForPeripherials.Controllers
         [HttpGet]
         public IActionResult CreateProduct()
         {
-
             return View();
         }
 

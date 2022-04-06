@@ -1,0 +1,29 @@
+﻿@*
+
+*@
+@{
+    ViewData["Title"] = "Response Page";
+    var response = TempData["affected"];
+}
+
+@{
+    <div id="id03" class="modall">
+    @*<span onclick="document.getElementById('id03').style.display='none'" class="closee" title="Close Modal">&times;</span>*@
+    <form id="redirectionHome" method="get" class="modal-contentt" asp-controller="Home" asp-action="Index">
+        <div class="containerr">
+            <h1 style="color:darkgreen;">Item creation response</h1>
+            <p style="color:green;">@response</p>
+            <div class="clearfix">
+                @*<button type="button" class="btn btn-secondary" onclick="cancelBut()">Cancel</button>*@
+                <button type="submit" class="btn btn-success" href="javascript:document.getElementById('redirectionHome').submit()">OK</button>
+            </div>
+            </div>
+            </form>
+            </div>
+}
+
+<script>
+    window.onload = function(){
+        document.getElementById('id03').style.display = 'block';
+    }
+</script>

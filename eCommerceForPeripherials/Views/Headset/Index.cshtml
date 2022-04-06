@@ -1,4 +1,4 @@
-﻿@model IEnumerable<eCommerceForPeripherials.Models.Item>
+﻿@model List<eCommerceForPeripherials.Models.Item>
 @{
     ViewData["Title"] = "Headsets";
 }
@@ -50,41 +50,29 @@
                     @{
                         if (Model != null)
                         {
-                            @foreach (var item in Model)
+                            @for(int i=0; i<Model.Count; i++)
                             {
                                 <div class="col-md-4 col-sm-6 col-xs-12 margin_bottom_30_all">
                                     <div class="product_list">
-                                        <div class="product_img"> <img class="img-responsive" src="@item.ItemImageUrl" alt=""> </div>
+                                        <div class="product_img"> <img class="img-responsive" src="@Model[i].ItemImageUrl" alt=""> </div>
                                         <div class="product_detail_btm">
                                             <div class="center">
-                                                <h4><a asp-controller="Shop" asp-action="Details" asp-route-id="@item.Id">@item.Name</a></h4>
+                                                <h4><a asp-controller="Shop" asp-action="Details" asp-route-id="@Model[i].Id">@Model[i].Name</a></h4>
                                             </div>
                                             <div class="starratin">
                                                 <div class="center"> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star-o" aria-hidden="true"></i> </div>
                                             </div>
                                             <div class="product_price">
-                                                <p>@*<span class="old_price">180₾</span> – *@<span class="new_price" style="color:#9999;">@item.Price₾</span></p>
+                                                <p>@*<span class="old_price">180₾</span> – *@<span class="new_price" style="color:#9999;">@Model[i].Price₾</span></p>
                                             </div>
-                                            <div class="descr" style="padding:5px;">
-                                                <p>@item.Description</p>
+                                            <div class="descr" style="padding:5px; text-align:center;">
+                                                <p>@Model[i].Description</p>
                                                 @if (User.IsInRole("Admin"))
                                                 {
                                                     //<form id="deleteItem" method="post" asp-action="DeleteItem" asp-controller="Admin" asp-route-id="@item.Id"><a class="btn btn-danger" href="javascript:document.getElementById('deleteItem').submit()">delete</a></form>
-                                                    <button class="btn btn-danger" onclick="document.getElementById('id02').style.display='block'">delete</button>
-                                                    <div id="id02" class="modall">
-												  <span onclick="document.getElementById('id02').style.display='none'" class="closee" title="Close Modal">&times;</span>
-												  <form id="deleteItemDiv4" method="post" class="modal-contentt" asp-controller="Admin" asp-action="DeleteItem" asp-route-id="@item.Id">
-													<div class="containerr">
-													  <h1 style="color:darkred;">Delete Item</h1>
-													  <p>Are you sure you want to delete @item.Name ?</p>
-
-													  <div class="clearfix">
-														<button type="button" class="btn btn-secondary" onclick="cancelBut()">Cancel</button>
-														<button type="submit" class="btn btn-danger" href="javascript:document.getElementById('deleteItemDiv4').submit()">Delete</button>
-													  </div>
-													</div>
-												  </form>
-												</div>
+                                                    <form asp-action="DeleteItem" method="post" asp-controller="Admin" asp-route-id="@Model[i].Id">
+                                                    <button type="submit" class="btn btn-danger">delete</button>
+                                                    </form>
                                                 }
                                             </div>
                                         </div>

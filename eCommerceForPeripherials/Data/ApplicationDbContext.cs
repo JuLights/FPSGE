@@ -23,5 +23,6 @@ namespace eCommerceForPeripherials.Data
 
         public DbSet<PlayersGear> PlayersGear { get; set; }
         public DbSet<Products> Products { get; set; }
+        public DbSet<LastItemIds> LastItemIds { get; set; }
     }
 }

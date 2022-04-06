@@ -7,7 +7,11 @@
     var pageCount = Convert.ToInt32(TempData["pageCount"]);
 }
 
-<h1>პროფესიონალური მოთამაშეების პერიფერია</h1>
+<div style="text-align:center;">
+    <h2>პროფესიონალური მოთამაშეების პერიფერია</h2>
+    <h3>პერიფერია რომელსაც ჩვენი მაღაზია ფლობს, იქნება <span style="color:blue;">ლურჯი</span> ფერით</h3>
+</div>
+
 
 @*<p>
     <a asp-action="Create">Create New</a>
@@ -80,13 +84,40 @@
                 @Html.DisplayFor(modelItem => item.Role)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Mouse)
+                @{
+                    if(item.MouseLink.Length>2)
+                    {
+                        <a href="@item.MouseLink" style="color:blue;">@Html.DisplayFor(modelItem => item.Mouse)</a>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.Mouse)
+                    }
+                }
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.KeyBoard)
+                @{
+                    if(item.KeyBoardLink.Length>2)
+                    {
+                        <a href="@item.KeyBoardLink" style="color:blue;">@Html.DisplayFor(modelItem => item.KeyBoard)</a>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.KeyBoard)
+                    }
+                }
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Headset)
+                @{
+                    if(item.HeadsetLink.Length>2)
+                    {
+                        <a href="@item.HeadsetLink" style="color:blue;">@Html.DisplayFor(modelItem => item.Headset)</a>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.Headset)
+                    }
+                }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Monitor)
