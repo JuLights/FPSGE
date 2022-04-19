@@ -42,33 +42,33 @@
 
 ////}
 
-let lightMode = localStorage.getItem("lightMode");
-const lightModeToggle = document.getElementById("#dark-mode-toggle");
+//let lightMode = localStorage.getItem("lightMode");
+//const lightModeToggle = document.getElementById("#dark-mode-toggle");
 
-const enableLightMode = () => {
-    document.body.classList.add('lightMode');
+//const enableLightMode = () => {
+//    document.body.classList.add('lightMode');
 
-    localStorage.setItem('lightMode', 'enabled');
-};
+//    localStorage.setItem('lightMode', 'enabled');
+//};
 
-const disableLightMode = () => {
-    document.body.classList.remove('lightMode');
+//const disableLightMode = () => {
+//    document.body.classList.remove('lightMode');
 
-    localStorage.setItem('lightMode', null);
-};
+//    localStorage.setItem('lightMode', null);
+//};
 
-if (lightMode === "enabled") {
-    enableLightMode();
-}
+//if (lightMode === "enabled") {
+//    enableLightMode();
+//}
 
-if (lightModeToggle) {
+//if (lightModeToggle) {
 
-    lightModeToggle.addEventListener("click", () => {
-        lightMode = localStorage.getItem('lightMode');
-        if (lightMode !== "enabled") {
-            enableLightMode();
-        } else {
-            disableLightMode();
-        }
-    });
-}
+//    lightModeToggle.addEventListener("click", () => {
+//        lightMode = localStorage.getItem('lightMode');
+//        if (lightMode !== "enabled") {
+//            enableLightMode();
+//        } else {
+//            disableLightMode();
+//        }
+//    });
+//}

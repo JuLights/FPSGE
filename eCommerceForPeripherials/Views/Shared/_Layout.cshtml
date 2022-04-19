@@ -81,7 +81,8 @@
                                         {
                                             <li> <span class="topbar-label"><i id="heart" class="fa  fa-heart"></i></span> <span id="hello" class="topbar-hightlight">Hello, Admin</span> </li>
                                             <li><a class="fa fa-info-circle" asp-controller="Admin" asp-action="CreateItem" title="add-item"> ნივთის დამატება</a></li>
-                                            <li><a class="fa fa-info-circle" asp-controller="Admin" asp-action="Products" title="add-item"> ხარჯთაღრიცხვა</a></li>
+                                            <li><a class="fa fa-info-circle" asp-controller="Admin" asp-action="ProductsUSD" title="add-item"> ხარჯთაღრიცხვა $</a></li>
+                                            <li><a class="fa fa-info-circle" asp-controller="Admin" asp-action="ProductsGEL" title="add-item"> ხარჯთაღრიცხვა ₾</a></li>
                                         }
                                         if (User.IsInRole("User"))
                                         {
@@ -95,7 +96,7 @@
                                 </ul>
                             </div>
                             <div class="topbar-right">
-                                <input type="checkbox" class="checkbox" id="checkbox" hidden checked />
+                                <input type="checkbox" class="checkbox" id="checkbox" hidden checked/>
                                 <label for="checkbox" class="label"/>
                                 <i class="fa fa-moon-o"></i>
                                 <i class="fa fa-sun-o"></i>

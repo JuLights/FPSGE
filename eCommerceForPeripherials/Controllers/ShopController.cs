@@ -1,17 +1,25 @@
 ﻿using BankOfGeorgia.IpayClient;
 using eCommerceForPeripherials.Data;
 using eCommerceForPeripherials.Models;
+using eCommerceForPeripherials.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace eCommerceForPeripherials.Controllers
 {
+    
+    //[Authorize(Roles = "Admin")]
     public class ShopController : Controller
     {
+        private static Object payLock = new object();
+
+
         private readonly ApplicationDbContext _db;
         private readonly IBankOfGeorgiaIpayClient _iPayClient; //iPay
         public ShopController(ApplicationDbContext db, IBankOfGeorgiaIpayClient iPayClient)
@@ -24,10 +32,21 @@ namespace eCommerceForPeripherials.Controllers
         {
             var item = _db.Items.Where(x => x.Id == Id).FirstOrDefault();
 
+            //VisitorCounterMiddleware._visitorId
+
+            string visitorId = HttpContext.Request.Cookies["VisitorId"];
+
+
+            if (visitorId != null)
+            {
+
+            }
+
             return View(item);
         }
 
         //[HttpPost]
+        [Authorize(Roles = "User,Admin")]
         public IActionResult AddToCart(int? Id)
         {
             var itemToSell = _db.Items.Where(x => x.Id == Id).FirstOrDefault();
@@ -35,6 +54,7 @@ namespace eCommerceForPeripherials.Controllers
             return View(itemToSell);
         }
 
+        [Authorize(Roles = "User,Admin")]
         public IActionResult Checkout(int? Id)
         {
             var checkoutItem = _db.Items.Where(x => x.Id == Id).FirstOrDefault();
@@ -69,6 +89,7 @@ namespace eCommerceForPeripherials.Controllers
             //return Redirect(/*redirectUrl*/);
         }
 
+        [Authorize(Roles = "User,Admin")]
         public async Task<RedirectResult> IPayment(int Id)
         {
             var checkoutItem = _db.Items.Where(x => x.Id == Id).FirstOrDefault();
@@ -89,12 +110,33 @@ namespace eCommerceForPeripherials.Controllers
                 CaptureMethod = CaptureMethod.Automatic,
             };
 
-
             var response = await _iPayClient.MakeOrderAsync(order);
             var redirectUrl = response.GetRedirectUrl();
+            //string redir = "";
+            //Thread payThread = new Thread(async () =>
+            //{
+            //    redir = await PayWithIPay(order);
+            //});
+
+            
+
+            //lock (payLock)
+            //{
+            //    payThread.Start();
+            //    //Thread.Sleep(30000);
+            //}
+
 
             return Redirect(redirectUrl);
         }
+
+
+        //public async Task<string> PayWithIPay(OrderRequest order)
+        //{
+        //    var response = await _iPayClient.MakeOrderAsync(order);
+        //    var redirectUrl = response.GetRedirectUrl();
+        //    return redirectUrl;
+        //}
 
 
     }

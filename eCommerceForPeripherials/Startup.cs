@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using eCommerceForPeripherials.Data;
 using Microsoft.AspNetCore.Identity;
+using eCommerceForPeripherials.Utility;
 
 namespace eCommerceForPeripherials
 {
@@ -64,6 +65,8 @@ namespace eCommerceForPeripherials
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseMiddleware(typeof(VisitorCounterMiddleware));
 
             app.UseAuthentication();
 

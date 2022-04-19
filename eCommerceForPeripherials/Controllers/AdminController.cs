@@ -89,7 +89,22 @@ namespace eCommerceForPeripherials.Controllers
 
                 TempData["affected"] = response;
                 var itemForEdit = await _db.Items.FindAsync(item.Id);
+
+                itemForEdit.RGB = item.RGB;
+                itemForEdit.Connection = item.Connection;
                 itemForEdit.Name = item.Name;
+                itemForEdit.Description = item.Description;
+                itemForEdit.ItemCondition = item.ItemCondition;
+                itemForEdit.Brand = item.Brand;
+                itemForEdit.CableLength = item.CableLength;
+                itemForEdit.Colour = item.Colour;
+                itemForEdit.Connection=item.Connection;
+                itemForEdit.ItemImageUrl= item.ItemImageUrl;
+                itemForEdit.Wireless= item.Wireless;
+                itemForEdit.ItemName = item.ItemName;
+                itemForEdit.Price= item.Price;
+                itemForEdit.ViewCount= item.ViewCount;
+
                 if(itemForEdit != null)
                 {
                     _db.Items.Update(itemForEdit);
@@ -140,7 +155,7 @@ namespace eCommerceForPeripherials.Controllers
 
 
         [HttpGet]
-        public IActionResult Products()
+        public IActionResult ProductsUSD()
         {
 
             var products = _db.Products.ToList();
@@ -203,6 +218,72 @@ namespace eCommerceForPeripherials.Controllers
             await _db.SaveChangesAsync();
 
             return RedirectToAction("Products", "Admin");
+        }
+
+        [HttpGet]
+        public IActionResult ProductsGEL()
+        {
+
+            var products = _db.productsGELs.ToList();
+            //await _db.Products.ToList();
+            return View(products);
+        }
+
+        [HttpGet]
+        public IActionResult CreateProductGEL()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateProductGEL(ProductsGEL product)
+        {
+            await _db.productsGELs.AddAsync(product);
+            await _db.SaveChangesAsync();
+
+            return RedirectToAction("ProductsGEL", "Admin");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditProductGEL(int? Id)
+        {
+            var productForEdit = await _db.productsGELs.FindAsync(Id);
+            if (productForEdit != null)
+            {
+                return View(productForEdit);
+            }
+
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditProductGEL(ProductsGEL product)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.productsGELs.Update(product);
+                await _db.SaveChangesAsync();
+                return RedirectToAction("Index", "Home");
+            }
+
+            return RedirectToAction("ProductsGEL", "Admin");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> DeleteProductGEL(int? Id)
+        {
+            //var productForDel =  _db.Products.Where(x => x.Id == Id).FirstOrDefault();
+            //_db.Products.Remove(productForDel);
+
+            var prdForDelete = await _db.productsGELs.FindAsync(Id);
+            if (prdForDelete == null)
+            {
+                return NotFound();
+            }
+            _db.productsGELs.Remove(prdForDelete);
+            await _db.SaveChangesAsync();
+
+            return RedirectToAction("ProductsGEL", "Admin");
         }
 
 

@@ -13,6 +13,7 @@ namespace eCommerceForPeripherials.Models
         public int Id { get; set; }
         //[DatabaseGeneratedAttribute(DatabaseGeneratedOption.)]
         //public int ItemId { get; set; }
+        public int ViewCount { get; set; }
         public string ItemImageUrl { get; set; }
         public string ItemName { get; set; } //mouse, keyboard, headset
         public string ItemCondition { get; set; } // axali, axalivit, meoradi
