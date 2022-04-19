@@ -3,6 +3,7 @@
  2 type role - Admin, User.
 * Admins can add, edit, delete products.
 * Users can register/authorize and buy products via PayPal.
+* Added Pro Player's Gear, If shop owns that peripherial, its linked to details page of this product.
 * Added - IPayClient.
 * TODO - TBC Payment.
 
