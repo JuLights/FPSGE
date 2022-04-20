@@ -7,11 +7,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using HltvParser;
 using eCommerceForPeripherials.Models.Admin;
+using eCommerceForPeripherials.Services;
 
 namespace eCommerceForPeripherials.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext
     {
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
 

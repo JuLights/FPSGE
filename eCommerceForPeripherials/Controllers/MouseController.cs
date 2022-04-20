@@ -10,9 +10,9 @@ namespace eCommerceForPeripherials.Controllers
 {
     public class MouseController : Controller
     {
-        private readonly ApplicationDbContext _db;
+        private readonly IApplicationDbContext _db;
 
-        public MouseController(ApplicationDbContext db)
+        public MouseController(IApplicationDbContext db)
         {
             _db = db;
         }
@@ -20,9 +20,23 @@ namespace eCommerceForPeripherials.Controllers
         {
             TempData["Mouse"] = "active";
 
-            IEnumerable<Item> itemList = _db.Items.Where(x=>x.ItemName == "Mouse");
+            IEnumerable<Item> itemList = _db.Items.Where(x => x.ItemName == "Mouse");
+
+            //Correct way of doing this!!!
+
+            //IEnumerable<Item> itemList = _db.Items;
+            //var mouseList = from item in itemList
+            //                where item.ItemName == "Mouse"
+            //                orderby item.Id descending
+            //                select item;
+
+            //return View(mouseList);
+
+
+
 
             return View(itemList.OrderByDescending(x => x.Id).ToList());
+            
         }
 
     }

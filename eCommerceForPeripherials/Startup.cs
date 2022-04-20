@@ -31,8 +31,9 @@ namespace eCommerceForPeripherials
             //DbContext configuration
             //services.AddDbContext<AppDbContext>(options => options.UseSqlServer(_configuration.GetConnectionString("DefaultConnectionString")));
             services.AddRazorPages();
-            services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionString")));
+            services.AddDbContext<IApplicationDbContext, ApplicationDbContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionString"))/*,ServiceLifetime.Scoped*/);
+
 
             services.AddScoped<IAppDbContextService, AppDbContextService>();
             //services.BuildServiceProvider().GetService<ApplicationDbContext>().Database.Migrate(); //??

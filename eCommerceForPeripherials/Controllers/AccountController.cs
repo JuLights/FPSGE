@@ -17,11 +17,11 @@ namespace eCommerceForPeripherials.Controllers
 
     public class AccountController : Controller
     {
-        private readonly ApplicationDbContext _db;
+        private readonly IApplicationDbContext _db;
         UserManager<ApplicationUser> _userManager; //IdentityUser - bazashi AspNetUsers tables ari
         SignInManager<ApplicationUser> _signInManager;
         RoleManager<IdentityRole> _roleManager;
-        public AccountController(ApplicationDbContext db, UserManager<ApplicationUser> userManager, 
+        public AccountController(IApplicationDbContext db, UserManager<ApplicationUser> userManager, 
             SignInManager<ApplicationUser> signInManager, RoleManager<IdentityRole> roleManager)
         {
             _db = db;

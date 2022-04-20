@@ -14,8 +14,8 @@ namespace eCommerceForPeripherials.Controllers
     [Authorize(Roles ="Admin")]
     public class AdminController : Controller
     {
-        private readonly ApplicationDbContext _db;
-        public AdminController(ApplicationDbContext db)
+        private readonly IApplicationDbContext _db;
+        public AdminController(IApplicationDbContext db)
         {
             _db = db;
         }
@@ -159,6 +159,7 @@ namespace eCommerceForPeripherials.Controllers
         {
 
             var products = _db.Products.ToList();
+
             //await _db.Products.ToList();
             return View(products);
         }

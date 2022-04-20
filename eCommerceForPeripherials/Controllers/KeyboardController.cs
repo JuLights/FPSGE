@@ -10,8 +10,8 @@ namespace eCommerceForPeripherials.Controllers
 {
     public class KeyboardController : Controller
     {
-        private readonly ApplicationDbContext _db;
-        public KeyboardController(ApplicationDbContext db)
+        private readonly IApplicationDbContext _db;
+        public KeyboardController(IApplicationDbContext db)
         {
             _db = db;
         }
