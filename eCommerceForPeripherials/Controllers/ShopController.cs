@@ -20,9 +20,9 @@ namespace eCommerceForPeripherials.Controllers
         private static Object payLock = new object();
 
 
-        private readonly IApplicationDbContext _db;
+        private readonly ApplicationDbContext _db;
         private readonly IBankOfGeorgiaIpayClient _iPayClient; //iPay
-        public ShopController(IApplicationDbContext db, IBankOfGeorgiaIpayClient iPayClient)
+        public ShopController(ApplicationDbContext db, IBankOfGeorgiaIpayClient iPayClient)
         {
             _db = db;
             _iPayClient = iPayClient;

@@ -31,7 +31,7 @@ namespace eCommerceForPeripherials
             //DbContext configuration
             //services.AddDbContext<AppDbContext>(options => options.UseSqlServer(_configuration.GetConnectionString("DefaultConnectionString")));
             services.AddRazorPages();
-            services.AddDbContext<IApplicationDbContext, ApplicationDbContext>(options =>
+            services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionString"))/*,ServiceLifetime.Scoped*/);
 
 
@@ -41,6 +41,7 @@ namespace eCommerceForPeripherials
             services.AddControllersWithViews();
 
             services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+
             services.AddBankOfGeorgiaIpay(
                 Configuration.GetBankOfGeorgiaIpayClientOptions("iPay")
                 );

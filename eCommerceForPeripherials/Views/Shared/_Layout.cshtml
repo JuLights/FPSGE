@@ -3,12 +3,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    @*<meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>@ViewData["Title"] - Shop</title>
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="~/css/site.css" />*@
-
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Shop</title>
+    <link rel="stylesheet" href="~/css/darklyBootswatch.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    
     <!-- basic -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,238 +17,104 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>@ViewData["Title"] - Shop</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
-    <!-- site icons -->
-    <link rel="icon" href="images/fevicon/fevicon.png" type="image/gif" />
-    <!-- bootstrap css -->
-    <link rel="stylesheet" href="../../../css/bootstrap.min.css" />
-    <!-- Site css -->
-    <link rel="stylesheet" href="../../../css/style.css" />
-    <!-- responsive css -->
-    <link rel="stylesheet" href="../../../css/responsive.css" />
-    <!-- colors css -->
-    <link rel="stylesheet" href="../../../css/colors1.css" />
-    <!-- custom css -->
-    <link rel="stylesheet" href="../../../css/custom.css" />
-    <!-- wow Animation css -->
-    <link rel="stylesheet" href="../../../css/animate.css" />
-    <!-- zoom effect -->
-    <link rel='stylesheet' href='../../css/hizoom.css'>
-    <!-- login css-->
-    <link rel="stylesheet" href="../../login-css/login.css" />
-    <!-- modal css-->
-    <link rel="stylesheet" href="../../modal-css/modal.css" />
-    <!-- nav css-->
-    <link rel="stylesheet" href="../../nav/navv.css" />
-    <!-- pagination css-->
-    <link rel="stylesheet" href="../../pagination-css/pagination.css" />
-    <!--font awesome-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!--dark checkbox-->
-    <link rel="stylesheet" href="../../css/darkcheckbox.css" />
-    <!--for modal-->
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
-
-    <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-          <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-          <![endif]-->
 </head>
 <body>
-    <!-- loader -->
-    <div class="bg_load"> <img class="loader_animation" src="../../../images/loaders/loader_1.png" alt="#" /> </div>
-    <!-- end loader -->
-    <!-- header -->
-    <header id="default_header" class="header_style_1">
-        <!-- header top -->
-        <div id="topNav" class="header_top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8">
-                        <div class="full">
-                            <div class="topbar-left">
-                                @*<button
-                                id="light-mode-toggle"
-                                class="light-mode-toggle"
-                                >Switch
-                                </button>*@
-                                <ul class="list-inline">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">FPS.GE</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarColor03">
+                        <ul class="navbar-nav me-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">მთავარი
+                                    <span class="visually-hidden">(current)</span>
+                                    </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" asp-area="" asp-controller="Mouse" asp-action="Index"><i class="bi bi-mouse-fill"></i> მაუსი</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" asp-area="" asp-controller="Keyboard" asp-action="Index"><i class="bi bi-keyboard-fill"></i> კლავიატურა</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" asp-area="" asp-controller="Headset" asp-action="Index"><i class="bi bi-headset"></i> ყურსასმენები</a>
+                                    </li>
+
+                                    <li class="nav-item dropdown">
+                                      <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">პრო მოთამაშეების</a>
+                                      <div class="dropdown-menu bg-light">
+                                          <a class="dropdown-item" asp-controller="ProPlayerStats" asp-action="PlayersGear" asp-route-id="1" id="per">პერიფერია</a>
+                                          <a class="dropdown-item" asp-controller="ProPlayerStats" asp-action="Index" asp-route-id="1" id="stat">სტატისტიკა</a>
+                                      </div>
+                                    </li>
+
+                                    <li class="nav-item">
+                                      <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact">კონტაქტი</a>
+                                    </li>
+
+                                    @if (user.IsSignedIn(User))
+                                    {
+                                        <li class="nav-item">
+                                            <a class="nav-link fa fa-sign-out" asp-controller="Account" asp-action="LogOff" title="sign-out"> გასვლა</a>
+                                            </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="nav-item">
+                                        <a class="nav-link fa fa-sign-in" href="/Account/Login/#inner_banner"  title="sign-out"> შესვლა</a>
+                                        </li>
+                                    }
                                     @{
                                         if (User.IsInRole("Admin"))
                                         {
-                                            <li> <span class="topbar-label"><i id="heart" class="fa  fa-heart"></i></span> <span id="hello" class="topbar-hightlight">Hello, Admin</span> </li>
-                                            <li><a class="fa fa-info-circle" asp-controller="Admin" asp-action="CreateItem" title="add-item"> ნივთის დამატება</a></li>
-                                            <li><a class="fa fa-info-circle" asp-controller="Admin" asp-action="ProductsUSD" title="add-item"> ხარჯთაღრიცხვა $</a></li>
-                                            <li><a class="fa fa-info-circle" asp-controller="Admin" asp-action="ProductsGEL" title="add-item"> ხარჯთაღრიცხვა ₾</a></li>
+                                            <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin</a>
+                                        <div class="dropdown-menu bg-light">
+                                            <a class="dropdown-item" asp-controller="Admin" asp-action="CreateItem" title="add-item"> ნივთის დამატება</a>
+                                            <a class="dropdown-item" asp-controller="Admin" asp-action="ProductsUSD" title="add-item"> ხარჯთაღრიცხვა $</a>
+                                            <a class="dropdown-item" asp-controller="Admin" asp-action="ProductsGEL" title="add-item"> ხარჯთაღრიცხვა ₾</a>
+                                        </div>
+                                            
+                                            </li>
+                                            //<li> <span class="topbar-label"><i id="heart" class="fa  fa-heart"></i></span> <span id="hello" class="topbar-hightlight">Hello, Admin</span> </li>
                                         }
-                                        if (User.IsInRole("User"))
-                                        {
-                                            <li> <span class="topbar-label"><i id="homeIcon" class="fa  fa-home"></i></span> <span id="tbilisi" class="topbar-hightlight">Tbilisi,Georgia , 0102</span> </li>
-                                            <li> <span class="topbar-label"><i id="infoIcon" class="fa fa-envelope-o"></i></span> <span class="topbar-hightlight"><a href="mailto:info@fps.ge" id="mail">info@fps.ge</a></span> </li>
-                                            <li> <span class="topbar-label"><i id="heart" class="fa  fa-heart"></i></span> <span id="hello" class="topbar-hightlight">Hello, User</span> </li>
+                                        //if (User.IsInRole("User"))
+                                        //{
+                                        //    <li> <span class="topbar-label"><i id="homeIcon" class="fa  fa-home"></i></span> <span id="tbilisi" class="topbar-hightlight">Tbilisi,Georgia , 0102</span> </li>
+                                        //    <li> <span class="topbar-label"><i id="infoIcon" class="fa fa-envelope-o"></i></span> <span class="topbar-hightlight"><a href="mailto:info@fps.ge" id="mail">info@fps.ge</a></span> </li>
+                                        //    <li> <span class="topbar-label"><i id="heart" class="fa  fa-heart"></i></span> <span id="hello" class="topbar-hightlight">Hello, User</span> </li>
 
-                                        }
+                                        //}
                                         
                                     }
-                                </ul>
-                            </div>
-                            <div class="topbar-right">
-                                <input type="checkbox" class="checkbox" id="checkbox" hidden checked/>
-                                <label for="checkbox" class="label"/>
-                                <i class="fa fa-moon-o"></i>
-                                <i class="fa fa-sun-o"></i>
-                                <div class="ball"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 right_section_header_top">
-                        <div class="float-left">
-                            <div class="social_icon">
-                                <ul class="list-inline">
-                                    @*<li><a class="fa fa-facebook" href="https://www.facebook.com/" title="Facebook" target="_blank"></a></li>
-                                    <li><a class="fa fa-google-plus" href="https://plus.google.com/" title="Google+" target="_blank"></a></li>
-                                    <li><a class="fa fa-twitter" href="https://twitter.com" title="Twitter" target="_blank"></a></li>
-                                    <li><a class="fa fa-linkedin" href="https://www.linkedin.com" title="LinkedIn" target="_blank"></a></li>
-                                    <li><a class="fa fa-instagram" href="https://www.instagram.com" title="Instagram" target="_blank"></a></li>*@
-                                    @*@if (User.IsInRole("Admin"))
-                                    {
-                                        <li><a class="fa fa-info-circle" asp-controller="Admin" asp-action="CreateItem" title="add-item"> ნივთის დამატება</a></li>
-                                        <li><a class="fa fa-info-circle" asp-controller="Admin" asp-action="Products" title="add-item"> ხარჯთაღრიცხვა</a></li>
-                                    }
-                                    @if (user.IsSignedIn(User))
-                                    {
 
-                                        <li><a class="fa fa-sign-out" asp-controller="Account" asp-action="LogOff" title="sign-out">სისტემიდან გასვლა</a></li>
-                                    }
-                                    else
-                                    {
-                                        
-                                    <li><a class="fa fa-sign-in" href="/Account/Login/#inner_banner"  title="sign-out"> სისტემაში შესვლა</a></li>
-                                    }*@
 
-                                </ul>
-                            </div>
-                        </div>
-                        <!--<div class="float-right">-->
-                            @*<div class="make_appo"> <a class="btn white_btn" href="make_appointment.html">Make Appointment</a> </div>*@
-                        <!--</div>-->
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- end header top -->
-        <!-- header bottom -->
-        <div id="botNav" class="header_bottom" style="background-color:black;">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-                        <!-- logo start -->
-                        <div class="logo"> <a asp-controller="Home" asp-action="Index"><img src="../../../images/logos/FPS.GE-Main-logo.png" alt="logo" /></a> </div>
-                        <!-- logo end -->
-                    </div>
-                    <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
-                        <!-- menu start -->
-                        <div class="menu_side">
-                            <div id="navbar_menu">
-                                <ul class="first-ul">
-                                    <li>
-                                        <a id="mainId" class="@TempData["Home"]" asp-controller="Home" asp-action="Index" >მთავარი</a>
-                                    </li>
-                                    <li><a id="mouseId" class="@TempData["Mouse"]" asp-controller="Mouse" asp-action="Index">მაუსი</a></li>
-                                    <li>
-                                        <a id="keyboardId" class="@TempData["Keyboard"]" asp-controller="Keyboard" asp-action="Index">კლავიატურა</a>
-                                    </li>
-                                    <li>
-                                        <a id="headsetId" class="@TempData["Headset"]" asp-controller="Headset" asp-action="Index">ყურსასმენები</a>
-                                    </li>
-                                    <li><a id="peripherId" class="@TempData["ProPlayers"]" href="#">პრო მოთამაშეების</a>
-                                        <ul>
-                                            <li><a asp-controller="ProPlayerStats" asp-action="PlayersGear" asp-route-id="1" id="per">პერიფერია</a></li>
-                                            <li> <a asp-controller="ProPlayerStats" asp-action="Index" asp-route-id="1" id="stat">სტატისტიკა</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a id="contactId" class="@TempData["Contact"]" asp-controller="Home" asp-action="Contact">კონტაქტი</a>
-                                    </li>
-                                    @if (user.IsSignedIn(User))
-                                    {
+                                  </ul>
+                                  <form class="d-flex">
+                                    <input class="form-control me-sm-2" type="text" placeholder="Search">
+                                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                                  </form>
+                                </div>
+                              </div>
+                              </nav>
+                              
+                          </header>
 
-                                        <li><a class="fa fa-sign-out" asp-controller="Account" asp-action="LogOff" title="sign-out"> გასვლა</a></li>
-                                    }
-                                    else
-                                    {
-                                        <li>
-                                        <a id="authId" class="fa fa-sign-in @TempData["Authorization"]" href="/Account/Login/#inner_banner"  title="sign-out"> შესვლა</a>
-                                        </li>
-                                    @*<li><a class="fa fa-sign-in" href="/Account/Login/#inner_banner"  title="sign-out"> სისტემაში შესვლა</a></li>*@
-                                    }
 
-                                </ul>
-                            </div>
-                           @* <div class="search_icon">
-                                <ul>
-                                    <li><a asp-controller="Home" asp-action="Search" asp-route-id="" data-toggle="modal" data-target="#search_bar"><i id="searchIcon" class="fa fa-search" style="color:white;" aria-hidden="true"></i></a></li>
-                                </ul>
-                            </div>*@
-                        </div>
-                        <!-- menu end -->
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- header bottom end -->
-    </header>
-    <!-- end header -->
-
-    @*<!--MODAL Development Stage Message Start-->
-
-  <div id="id01" class="w3-modal" style="padding-top:15%;">
-    <div class="w3-modal-content w3-animate-top w3-card-4" style="background-color:rgba(19, 19, 18, 0.8);">
-      <div class="w3-container">
-        <p style="color:white; text-align:center;">The website is in the development stage and thanks for your patience.</p>
-      </div>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
     </div>
-  </div>
-    <!--MODAL Development Stage Message End-->*@
 
-    <!-- viewRender -->
-    @RenderBody()
-    <!-- viewRender ends -->
 
-    <!-- Modal -->
-    <div class="modal fade" id="search_bar" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-lg-8 col-md-8 col-sm-8 offset-lg-2 offset-md-2 offset-sm-2 col-xs-10 col-xs-offset-1">
-                            <div class="navbar-search">
-                                <form action="#" method="get" id="search-global-form" class="search-global">
-                                    <input type="text" placeholder="მოძებნე..." autocomplete="off" name="s" id="search" value="" class="search-global__input">
-                                    <button class="search-global__btn"><i class="fa fa-search"></i></button>
-                                    <div class="search-global__note">მოძებნე ნებისმიერი პერიფერია..</div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Model search bar -->
-
-    <!-- footer -->
-    <footer class="footer_style_2">
-        @*//facebook Messanger Start*@
-        <!-- Messenger Chat Plugin Code -->
+    <!-- Messenger Chat Plugin Code -->
     <div id="fb-root"></div>
 
     <!-- Your Chat Plugin code -->
@@ -280,221 +147,15 @@
     <!-- Messenger Chat Plugin Code END -->
     @*//Facebook Messanger End*@
 
-        <div class="container-fuild">
-            <div class="row">
-                <div class="footer_blog">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="main-heading left_text">
-                                <h2>ჩვენი სოციალური ქსელები</h2>
-                            </div>
-                            @*<p>Tincidunt elit magnis nulla facilisis. Dolor sagittis maecenas. Sapien nunc amet ultrices, dolores sit ipsum velit purus aliquet, massa fringilla leo orci.</p>*@
-                            <ul class="social_icons">
-                                <li class="social-icon fb"><a href="https://www.facebook.com/FPS.GE/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                <li class="social-icon tw"><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                @*<li class="social-icon gp"><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>*@
-                            </ul>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="main-heading left_text">
-                                <h2>დამატებითი მისამართები</h2>
-                            </div>
-                            <ul class="footer-menu">
-                                <li><a href="#it_about.html"><i class="fa fa-angle-right"></i> ჩვენს შესახებ</a></li>
-                                <li><a href="#it_term_condition.html"><i class="fa fa-angle-right"></i> წესები და პირობები</a></li>
-                                <li><a href="#it_privacy_policy.html"><i class="fa fa-angle-right"></i> Კონფიდენციალურობის პოლიტიკა</a></li>
-                                @*<li><a href="it_news.html"><i class="fa fa-angle-right"></i> News</a></li>*@
-                                <li><a asp-action="contact" asp-controller="home"><i class="fa fa-angle-right"></i> დაგვიკავშირდით</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="main-heading left_text">
-                                <h2>სერვისები</h2>
-                            </div>
-                            <ul class="footer-menu">
-                                @*<li><a href="it_data_recovery.html"><i class="fa fa-angle-right"></i> Data recovery</a></li>*@
-                                <li><a href="#it_computer_repair.html"><i class="fa fa-angle-right"></i> კომპიუტერის პერიფერია</a></li>
-                                <li><a href="#it_computer_repair.html"><i class="fa fa-angle-right"></i> მოწყობილობის განახლება</a></li>
-                                <li><a href="#it_computer_repair.html"><i class="fa fa-angle-right"></i> კომპიუტერის შეკეთება</a></li>
-                                @*<li><a href="it_mobile_service.html"><i class="fa fa-angle-right"></i> Mobile service</a></li>*@
-                                @*<li><a href="it_network_solution.html"><i class="fa fa-angle-right"></i> Network solutions</a></li>*@
-                                <li><a href="#it_techn_support.html"><i class="fa fa-angle-right"></i> ტექნიკური დახმარება</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="main-heading left_text">
-                                <h2>დაგვიკავშირდით</h2>
-                            </div>
-                            <p>
-                                @*<a asp-action="contact" asp-controller="home">Contact</a><br>*@
-                                საქართველო, თბილისი<br>
-                                <span style="font-size:18px;"><a href="tel:+995597406036">+995 597 40 60 36</a></span>
-                            </p>
-                            <div class="footer_mail-section">
-                                <form>
-                                    <fieldset>
-                                        <div class="field">
-                                            <input placeholder="Email" type="text"><br />
-                                            <label for="subbut">გამოგვიწერეთ ჩვენი ელ.ფოსტა</label><button id="subbut" class="button_custom"><i class="fa fa-envelope" aria-hidden="true"></i></button>
-                                        </div>
-                                    </fieldset>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="cprt">
-                    <p><a href="#">FPS.GE</a> © Copyrights 2022 Created by <a href="#">Ju</a></p>
-                </div>
-            </div>
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2022 - FPS.GE - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-    <!-- end footer -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
 
-
-    
-    <!-- js section -->
-    @*<script src="../../js/modal.js"></script>*@
-    @*<script src="../../js/lightmode.js"></script>*@
-    <script src="../../js/jquery.min.js"></script>
-    <script src="../../js/darkcheckbox.js"></script>
-    <script src="../../js/bootstrap.min.js"></script>
-    <!-- menu js -->
-    <script src="../../js/menumaker.js"></script>
-    <!-- wow animation -->
-    <script src="../../js/wow.js"></script>
-    <!-- custom js -->
-    <script src="../../js/custom.js"></script>
-
-    @*<script>
-        // Add active class to the current button (highlight it)
-        var ul = document.getElementById('ul');
-        var menuItems = ul.getElementsByClassName("menuitems");
-
-        for (var i = 0; i < menuItems.length; i++) {
-            console.log(menuItems[i]);
-          menuItems[i].addEventListener("click", function() {
-            var current = document.getElementsByClassName("active");
-            current[0].className = current[0].className.replace("menuitems active", "menuitems");
-            this.className += " active";
-          });
-        }
-
-        </script>*@
-
-    @*<script>
-
-        // This example adds a marker to indicate the position of Bondi Beach in Sydney,
-        // Australia.
-        function initMap() {
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 11,
-                center: { lat: 40.645037, lng: -73.880224 },
-                styles: [
-                    {
-                        elementType: 'geometry',
-                        stylers: [{ color: '#fefefe' }]
-                    },
-                    {
-                        elementType: 'labels.icon',
-                        stylers: [{ visibility: 'off' }]
-                    },
-                    {
-                        elementType: 'labels.text.fill',
-                        stylers: [{ color: '#616161' }]
-                    },
-                    {
-                        elementType: 'labels.text.stroke',
-                        stylers: [{ color: '#f5f5f5' }]
-                    },
-                    {
-                        featureType: 'administrative.land_parcel',
-                        elementType: 'labels.text.fill',
-                        stylers: [{ color: '#bdbdbd' }]
-                    },
-                    {
-                        featureType: 'poi',
-                        elementType: 'geometry',
-                        stylers: [{ color: '#eeeeee' }]
-                    },
-                    {
-                        featureType: 'poi',
-                        elementType: 'labels.text.fill',
-                        stylers: [{ color: '#757575' }]
-                    },
-                    {
-                        featureType: 'poi.park',
-                        elementType: 'geometry',
-                        stylers: [{ color: '#e5e5e5' }]
-                    },
-                    {
-                        featureType: 'poi.park',
-                        elementType: 'labels.text.fill',
-                        stylers: [{ color: '#9e9e9e' }]
-                    },
-                    {
-                        featureType: 'road',
-                        elementType: 'geometry',
-                        stylers: [{ color: '#eee' }]
-                    },
-                    {
-                        featureType: 'road.arterial',
-                        elementType: 'labels.text.fill',
-                        stylers: [{ color: '#3d3523' }]
-                    },
-                    {
-                        featureType: 'road.highway',
-                        elementType: 'geometry',
-                        stylers: [{ color: '#eee' }]
-                    },
-                    {
-                        featureType: 'road.highway',
-                        elementType: 'labels.text.fill',
-                        stylers: [{ color: '#616161' }]
-                    },
-                    {
-                        featureType: 'road.local',
-                        elementType: 'labels.text.fill',
-                        stylers: [{ color: '#9e9e9e' }]
-                    },
-                    {
-                        featureType: 'transit.line',
-                        elementType: 'geometry',
-                        stylers: [{ color: '#e5e5e5' }]
-                    },
-                    {
-                        featureType: 'transit.station',
-                        elementType: 'geometry',
-                        stylers: [{ color: '#000' }]
-                    },
-                    {
-                        featureType: 'water',
-                        elementType: 'geometry',
-                        stylers: [{ color: '#c8d7d4' }]
-                    },
-                    {
-                        featureType: 'water',
-                        elementType: 'labels.text.fill',
-                        stylers: [{ color: '#b1a481' }]
-                    }
-                ]
-            });
-
-            var image = 'images/it_service/location_icon_map_cont.png';
-            var beachMarker = new google.maps.Marker({
-                position: { lat: 40.645037, lng: -73.880224 },
-                map: map,
-                icon: image
-            });
-        }
-    </script>*@
-
-    @*<footer class="border-top footer text-muted">
-            <div class="container">
-                &copy; 2022 - eCommerceForPeripherials - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-            </div>
-        </footer>*@
-    @*<script src="~/js/site.js" asp-append-version="true"></script>*@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

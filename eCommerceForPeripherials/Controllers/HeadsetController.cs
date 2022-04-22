@@ -10,8 +10,8 @@ namespace eCommerceForPeripherials.Controllers
 {
     public class HeadsetController : Controller
     {
-        private readonly IApplicationDbContext _db;
-        public HeadsetController(IApplicationDbContext db)
+        private readonly ApplicationDbContext _db;
+        public HeadsetController(ApplicationDbContext db)
         {
             _db = db;
         }

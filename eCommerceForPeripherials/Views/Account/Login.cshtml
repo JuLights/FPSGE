@@ -1,129 +1,75 @@
 ﻿@model eCommerceForPeripherials.Models.ViewModels.LoginViewModel
 
-@*<div class="row" style="padding-left:25%;">
-        <div class="col-md-8">
-            <section id="loginForm">
-                <form id="account" method="post" asp-controller="Account" asp-action="Login">
-                    <h4 style="padding-left:25%;">Sign In</h4>
-                    <hr />
-                    <div asp-validation-summary="All" class="text-danger"></div>
-                    <div class="form-group row">
-                        <label class="col-md-2" asp-for="Email"></label>
-                        <div class="col-md-10">
-                            <input asp-for="Email" class="form-control" />
-                            <span asp-validation-for="Email" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-2" asp-for="Password"></label>
-                        <div class="col-md-10">
-                            <input asp-for="Password" class="form-control" />
-                            <span asp-validation-for="Password" class="text-danger"></span>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-md-10 offset-md-2 custom-checkbox">
-                            <label asp-for="RememberMe" class="pr-4 pl-0">
-                                <input asp-for="RememberMe" />
-                            </label>
-                            Remember me?
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-10 offset-md-2">
-                            <input type="submit" value="Log in" class="btn btn-success" />
-                        </div>
-                    </div>
-                    <p class="col-md-10 offset-md-2">
-                        <a asp-action="Register" asp-controller="Account">Sign Up</a>
-                    </p>
-
-                </form>
-            </section>
-        </div>
-    </div>*@
-
-<!-- inner page banner -->
-<div id="inner_banner" class="section inner_banner_section">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="full">
-                    <div class="title-holder">
-                        <div class="title-holder-cell text-left">
-                            <h1 class="page-title">ავტორიზაცია</h1>
-                            <ol class="breadcrumb">
-                                <li><a asp-controller="Home" asp-action="Index">მთავარი</a></li>
-                                <li class="active">ავტორიზაცია</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<div style="text-align:center;">
+    <a id="log" href="#" onclick="switcherForLogin();" style="align-content:center; text-decoration:underline;">ავტორიზაცი</a>
+    <a id="reg" href="#" onclick="switcherForRegister();" style="align-content:center; text-decoration:none; padding-left:1%;">რეგისტრაცია</a>
 </div>
-<!-- end inner page banner -->
 
-<div class="row" style="background-color:black; padding-bottom:120px;">
-    <div class="login-wrap">
-        <div class="login-html" id="login">
-            <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">შესვლა</label>
-            <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">რეგისტრაცია</label>
-            <div class="login-form">
-                <form id="account" method="post" asp-controller="Account" asp-action="Login">
-                    <div class="sign-in-htm">
-                        <div class="group">
-                            <label for="user" class="label" style="font-size:15px;">ელ.ფოსტა</label>
-                            <input id="user" asp-for="Email" type="text" class="input">
-                        </div>
-                        <div class="group">
-                            <label for="pass" class="label" style="font-size:15px;">პაროლი</label>
-                            <input id="pass" asp-for="Password" type="password" class="input" data-type="password">
-                        </div>
-                        <div class="group">
-                            <input id="check" type="checkbox" class="check" checked>
-                            <label for="check"><span class="icon"></span> დამტოვე სისტემაში</label>
-                        </div>
-                        <div class="group">
-                            <input type="submit" class="button" value="სისტემაში შესვლა">
-                        </div>
-                        <div class="hr"></div>
-                        <div class="foot-lnk">
-                            <a href="#forgot">დაგავიწყდა პაროლი?</a>
-                        </div>
-                    </div>
-
-                </form>
-                <form id="register" method="post" asp-controller="Account" asp-action="Register">
-                    <div class="sign-up-htm">
-                        <div class="group">
-                            <label for="user" class="label" style="font-size:15px;">სახელი</label>
-                            <input id="user" name="Name" type="text" class="input">
-                        </div>
-                        <div class="group">
-                            <label for="pass" class="label" style="font-size:15px;">ელ.ფოსტა</label>
-                            <input id="pass" type="text" name="Email" class="input">
-                        </div>
-                        <div class="group">
-                            <label for="pass" class="label" style="font-size:15px;">პაროლი</label>
-                            <input id="pass" type="password" name="Password" class="input" data-type="password">
-                        </div>
-                        <div class="group">
-                            <label for="pass" class="label" style="font-size:15px;">გაიმეორეთ პაროლი</label>
-                            <input id="pass" type="password" name="ConfirmPassword" class="input" data-type="password">
-                        </div>
-                        <div class="group">
-                            <input type="submit" class="button" value="რეგისტრაცია">
-                        </div>
-                        <div class="hr"></div>
-                        <div class="foot-lnk">
-                            <label for="tab-1">Already Member?</a>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
+<div class="row" style="justify-content:center; max-width:50%; margin:auto; padding-top:0px;">
+    <form id="loginForm" method="post" asp-controller="Account" asp-action="Login">
+    <div asp-validation-summary="All"></div>
+    <fieldset>
+    <div class="form-group">
+      <label for="user" class="form-label mt-4">ელ.ფოსტა</label>
+      <input id="user" asp-for="Email" type="text" class="form-control">
+      <span asp-validation-for="Email" class="text-danger"></span>
     </div>
+    <div class="form-group">
+      <label for="pass" class="form-label mt-4">პაროლი</label>
+      <input id="pass" asp-for="Password" type="password" class="form-control" placeholder="Password" data-type="password">
+      <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+      <div class="group">
+          <input id="check" type="checkbox" class="form-check-input" value="" checked>
+          <label for="check"><span class="icon"></span> დამტოვე სისტემაში</label>
+      </div>
+    </div>
+    
+    <div class="form-group" style="padding-top:1%;">
+        <button type="submit" class="btn btn-outline-light">სისტემაში შესვლა</button>
+        <a href="#forgot" style="padding-left:2%;">დაგავიწყდა პაროლი?</a>
+    </div>
+
+  </fieldset>
+</form>
+
+<partial name="_Register"/>
+
 </div>
+
+<script>
+    function switcherForRegister(){
+        if(!document.getElementById('loginForm').hidden)
+        {
+            document.getElementById('loginForm').hidden = true;
+        }
+        document.getElementById('registerForm').hidden = false;
+        document.getElementById('log').style.textDecoration = 'none';
+        document.getElementById('reg').style.textDecoration = 'underline';
+    }
+
+    function switcherForLogin(){
+        if(!document.getElementById('registerForm').hidden)
+        {
+            document.getElementById('registerForm').hidden = true;
+        }
+        document.getElementById('loginForm').hidden = false;
+        document.getElementById('reg').style.textDecoration = 'none';
+        document.getElementById('log').style.textDecoration = 'underline';
+    }
+    
+
+</script>
+
+
+
+
+
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial"/>
+    }
+    
+}

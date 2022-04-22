@@ -13,9 +13,9 @@ namespace eCommerceForPeripherials.Controllers
     public class ProPlayerStatsController : Controller
     {
         private IPlayerStatisticService _playerStatisticService;
-        private readonly IApplicationDbContext _db;
+        private readonly ApplicationDbContext _db;
 
-        public ProPlayerStatsController(IPlayerStatisticService playerStatisticService, IApplicationDbContext db)
+        public ProPlayerStatsController(IPlayerStatisticService playerStatisticService, ApplicationDbContext db)
 		{
             _playerStatisticService = playerStatisticService;
             _db = db;

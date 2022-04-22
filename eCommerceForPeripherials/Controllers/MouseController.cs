@@ -10,9 +10,9 @@ namespace eCommerceForPeripherials.Controllers
 {
     public class MouseController : Controller
     {
-        private readonly IApplicationDbContext _db;
+        private readonly ApplicationDbContext _db;
 
-        public MouseController(IApplicationDbContext db)
+        public MouseController(ApplicationDbContext db)
         {
             _db = db;
         }

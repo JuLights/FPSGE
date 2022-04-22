@@ -1,333 +1,121 @@
-﻿@model List<eCommerceForPeripherials.Models.Item>
+﻿@model IEnumerable<eCommerceForPeripherials.Models.Item>
+
 @{
-    ViewData["Title"] = "FPS.GE";
+    ViewData["Title"] = "Index";
 }
 
-<!-- inner page banner -->
-<div id="inner_banner" class="section inner_banner_section">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="full">
-                    <div class="title-holder">
-                        <div class="title-holder-cell text-left">
-                            <h1 class="page-title">მაღაზია</h1>
-                            <ol class="breadcrumb">
-                                <li><a asp-controller="Home" asp-action="Index">მთავარი</a></li>
-                                <li class="active">მაღაზია</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- end inner page banner -->
-<!-- section -->
-<div class="section padding_layout_1 product_list_main" style="background-color:black;">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-9">
-                <div class="col-md-3">
-                    <div class="side_bar">
-                        <div class="side_bar_blog">
-                            <h4>ძიება</h4>
-                            <div class="side_bar_search">
-                                <div class="input-group stylish-input-group">
-                                    <input class="form-control" placeholder="Search" type="text">
-                                    <span class="input-group-addon">
-                                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    @{
-                        if (Model != null)
-                        {
-                            for(int i=0; i<Model.Count; i++)
-                            {
-                                <div class="col-md-4 col-sm-6 col-xs-12 margin_bottom_30_all">
-                                    <div class="product_list">
-                                        <div class="product_img"> <img class="img-responsive" src="@Model[i].ItemImageUrl" alt=""> </div>
-                                        <div class="product_detail_btm">
-                                            <div class="center">
-                                                <h4><a asp-controller="Shop" asp-action="Details" asp-route-id="@Model[i].Id">@Model[i].Name</a></h4>
-                                            </div>
-                                            <div class="starratin">
-                                                <div class="center"> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star-o" aria-hidden="true"></i> </div>
-                                            </div>
-                                            <div class="product_price">
-                                                <p>@*<span class="old_price">200.00₾</span> – *@<span class="new_price">@Model[i].Price₾</span></p>
-                                            </div>
-                                            <div class="descr" style="padding:5px; text-align:center;">
-                                                @{
-                                                    try
-                                                    {
-                                                        <p>@Model[i].Description.Remove(70)</p>
-                                                    }catch(Exception ex)
-                                                    {
-                                                        <p>@Model[i].Description</p>
-                                                    }
-                                                }
-                                                
-                                                @if (User.IsInRole("Admin"))
-                                                {
-                                                    //<form id="deleteItem" method="post" asp-action="DeleteItem" asp-controller="Admin" asp-route-id="@item.Id"><a class="btn btn-danger" href="javascript:document.getElementById('deleteItem').submit()">delete</a></form>
-                                                    
-                                                    <form asp-action="DeleteItem" method="post" asp-controller="Admin" asp-route-id="@Model[i].Id">
-                                                    <button type="submit" class="btn btn-danger">delete</button>
-                                                    </form>
-                                                    
-                                                    //onclick="document.getElementById('id02').style.display='block'"
-                 //                                   <div id="id02" class="modall">
-												     // <span onclick="document.getElementById('id02').style.display='none'" class="closee" title="Close Modal">&times;</span>
-												     // <form id="deleteItemDiv1" method="post" class="modal-contentt" asp-controller="Admin" asp-action="DeleteItem" asp-route-id="@Model[i].Id">
-													    //<div class="containerr">
-													    //  <h1 style="color:darkred;">Delete Item</h1>
-													    //  <p>Are you sure you want to delete @Model[i].Name ?</p>
-
-													    //  <div class="clearfix">
-														   // <button type="button" class="btn btn-secondary" onclick="cancelBut()">Cancel</button>
-														   // <button type="submit" class="btn btn-danger" href="javascript:document.getElementById('deleteItemDiv1').submit()">Delete</button>
-													    //  </div>
-													    //</div>
-												     // </form>
-                 //                                     </div>
-                                                }
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            }
-                        }
-
+@{
+    if (Model != null)
+    {
+        <div class="row" style="padding-top:3%;">
+        @foreach(var item in Model)
+        {
+            <div class="col-sm-4 product" style="border:1px solid white;">
+              <h3 class="card-header">@item.Brand</h3>
+              <div class="card-body">
+                <a asp-controller="Shop" asp-action="Details" asp-route-id="@item.Id" class="text-muted"><h5 class="card-title">@item.Name</h5></a>
+                @*<h6 class="card-subtitle text-muted">Wireless: @item.Wireless</h6>*@
+              </div>
+              <div class="product_img" style=""> <img class="img-responsive" src="@item.ItemImageUrl" alt=""> </div>
+  
+              <div class="card-body">
+              @{
+                    try
+                    {
+                        <p class="card-text">@item.Description.Remove(70)<a class="btn btn-link text-muted" asp-controller="Shop" asp-action="Details" asp-route-id="@item.Id">..ვრცლად</a></p>
+                    }catch(Exception ex)
+                    {
+                        <p class="card-text">@item.Description</p>
                     }
+                    
+                }
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item text-muted">უკაბელო: @item.Wireless</li>
+                <li class="list-group-item text-muted">მდგომარეობა: @item.ItemCondition</li>
+                <li class="list-group-item text-muted">კავშირის ტიპი: @item.Connection</li>
+              </ul>
+              <div class="card-body">
+              @if (User.IsInRole("Admin"))
+              {
+                  <div class="modal" style="">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">ნივთის წაშლა</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true"></span>
+                                    </button>
+                                </div>
+                            <div class="modal-body">
+                                <p>დარწმუნებული ხარ რომ გინდა წაშალო @item.Name?</p>
+                            </div>
+                            <div class="modal-footer">
+                            <form asp-action="DeleteItem" method="post" asp-controller="Admin" asp-route-id="@item.Id">
+                            <button type="submit" class="btn btn-outline-danger">Delete</button>
+                            </form>
+                                @*<button type="button" class="btn btn-outline-danger">Delete</button>*@
+                                <button type="button" onclick="closeModal(@item.Id)" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                            </div>
+                        </div>
+                  </div>
+                  
 
-                    <script>
-                        function cancelBut(i){
-                            var mod = document.getElementByClassName('modall');
-                            mod[i].style.display = 'none';
-                        }
+                  <button type="button" onclick="document.getElementsByClassName('modal')[@item.Id].style.display='block';" class="btn btn-outline-danger">Delete</button>
+                  
 
-						// Get the modal
-                        var modal = document.getElementById('id02');
-
-                        // When the user clicks anywhere outside of the modal, close it
-                        window.onclick = function(event) {
-                          if (event.target == modal) {
-	                        modal.style.display = "none";
-                          }
-                        }
-                    </script>
-
-
-                    @*<div class="col-md-4 col-sm-6 col-xs-12 margin_bottom_30_all">
-                        <div class="product_list">
-                            <div class="product_img"> <img class="img-responsive" src="images/it_service/2.jpg" alt=""> </div>
-                            <div class="product_detail_btm">
-                                <div class="center">
-                                    <h4><a href="it_shop_detail.html">Kaspersky Internet Security</a></h4>
-                                </div>
-                                <div class="starratin">
-                                    <div class="center"> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star-o" aria-hidden="true"></i> </div>
-                                </div>
-                                <div class="product_price">
-                                    <p><span class="old_price">$24.99</span><span class="new_price"> $12.49</span></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 col-xs-12 margin_bottom_30_all">
-                        <div class="product_list">
-                            <div class="product_img"> <img class="img-responsive" src="images/it_service/3.jpg" alt=""> </div>
-                            <div class="product_detail_btm">
-                                <div class="center">
-                                    <h4><a href="it_shop_detail.html">Mcafee Livesafe Antivirus</a></h4>
-                                </div>
-                                <div class="starratin">
-                                    <div class="center"> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star-o" aria-hidden="true"></i> </div>
-                                </div>
-                                <div class="product_price">
-                                    <p><span class="old_price">$24.99</span><span class="new_price"> $12.49</span></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 col-xs-12 margin_bottom_30_all">
-                        <div class="product_list">
-                            <div class="product_img"> <img class="img-responsive" src="images/it_service/4.jpg" alt=""> </div>
-                            <div class="product_detail_btm">
-                                <div class="center">
-                                    <h4><a href="it_shop_detail.html">Norton Internet Security</a></h4>
-                                </div>
-                                <div class="starratin">
-                                    <div class="center"> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star-o" aria-hidden="true"></i> </div>
-                                </div>
-                                <div class="product_price">
-                                    <p><span class="old_price">$15.00</span> – <span class="new_price">$25.00</span></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 col-xs-12 margin_bottom_30_all">
-                        <div class="product_list">
-                            <div class="product_img"> <img class="img-responsive" src="images/it_service/5.jpg" alt=""> </div>
-                            <div class="product_detail_btm">
-                                <div class="center">
-                                    <h4><a href="it_shop_detail.html">Norton Internet Security</a></h4>
-                                </div>
-                                <div class="starratin">
-                                    <div class="center"> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star-o" aria-hidden="true"></i> </div>
-                                </div>
-                                <div class="product_price">
-                                    <p><span class="old_price">$15.00</span> – <span class="new_price">$25.00</span></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 col-xs-12 margin_bottom_30_all">
-                        <div class="product_list">
-                            <div class="product_img"> <img class="img-responsive" src="images/it_service/6.jpg" alt=""> </div>
-                            <div class="product_detail_btm">
-                                <div class="center">
-                                    <h4><a href="it_shop_detail.html">Kaspersky Internet Security</a></h4>
-                                </div>
-                                <div class="starratin">
-                                    <div class="center"> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star-o" aria-hidden="true"></i> </div>
-                                </div>
-                                <div class="product_price">
-                                    <p><span class="old_price">$24.99</span><span class="new_price"> $12.49</span></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 col-xs-12 margin_bottom_30_all">
-                        <div class="product_list">
-                            <div class="product_img"> <img class="img-responsive" src="images/it_service/7.jpg" alt=""> </div>
-                            <div class="product_detail_btm">
-                                <div class="center">
-                                    <h4><a href="it_shop_detail.html">Mcafee Livesafe Antivirus</a></h4>
-                                </div>
-                                <div class="starratin">
-                                    <div class="center"> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star-o" aria-hidden="true"></i> </div>
-                                </div>
-                                <div class="product_price">
-                                    <p><span class="old_price">$24.99</span><span class="new_price"> $12.49</span></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 col-xs-12 margin_bottom_30_all">
-                        <div class="product_list">
-                            <div class="product_img"> <img class="img-responsive" src="images/it_service/8.jpg" alt=""> </div>
-                            <div class="product_detail_btm">
-                                <div class="center">
-                                    <h4><a href="it_shop_detail.html">Norton Internet Security</a></h4>
-                                </div>
-                                <div class="starratin">
-                                    <div class="center"> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star-o" aria-hidden="true"></i> </div>
-                                </div>
-                                <div class="product_price">
-                                    <p><span class="old_price">$15.00</span> – <span class="new_price">$25.00</span></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 col-xs-12 margin_bottom_30_all">
-                        <div class="product_list">
-                            <div class="product_img"> <img class="img-responsive" src="images/it_service/1.jpg" alt=""> </div>
-                            <div class="product_detail_btm">
-                                <div class="center">
-                                    <h4><a href="it_shop_detail.html">Norton Internet Security</a></h4>
-                                </div>
-                                <div class="starratin">
-                                    <div class="center"> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star-o" aria-hidden="true"></i> </div>
-                                </div>
-                                <div class="product_price">
-                                    <p><span class="old_price">$15.00</span> – <span class="new_price">$25.00</span></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 col-xs-12 margin_bottom_30_all">
-                        <div class="product_list">
-                            <div class="product_img"> <img class="img-responsive" src="images/it_service/2.jpg" alt=""> </div>
-                            <div class="product_detail_btm">
-                                <div class="center">
-                                    <h4><a href="it_shop_detail.html">Kaspersky Internet Security</a></h4>
-                                </div>
-                                <div class="starratin">
-                                    <div class="center"> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star-o" aria-hidden="true"></i> </div>
-                                </div>
-                                <div class="product_price">
-                                    <p><span class="old_price">$24.99</span><span class="new_price"> $12.49</span></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 col-xs-12 margin_bottom_30_all">
-                        <div class="product_list">
-                            <div class="product_img"> <img class="img-responsive" src="images/it_service/3.jpg" alt=""> </div>
-                            <div class="product_detail_btm">
-                                <div class="center">
-                                    <h4><a href="it_shop_detail.html">Mcafee Livesafe Antivirus</a></h4>
-                                </div>
-                                <div class="starratin">
-                                    <div class="center"> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star-o" aria-hidden="true"></i> </div>
-                                </div>
-                                <div class="product_price">
-                                    <p><span class="old_price">$24.99</span><span class="new_price"> $12.49</span></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 col-xs-12 margin_bottom_30_all">
-                        <div class="product_list">
-                            <div class="product_img"> <img class="img-responsive" src="images/it_service/4.jpg" alt=""> </div>
-                            <div class="product_detail_btm">
-                                <div class="center">
-                                    <h4><a href="it_shop_detail.html">Norton Internet Security</a></h4>
-                                </div>
-                                <div class="starratin">
-                                    <div class="center"> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star-o" aria-hidden="true"></i> </div>
-                                </div>
-                                <div class="product_price">
-                                    <p><span class="old_price">$15.00</span> – <span class="new_price">$25.00</span></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>*@
-                </div>
+                    //<form asp-action="DeleteItem" method="post" asp-controller="Admin" asp-route-id="@item.Id">
+                    //<button type="submit" class="btn btn-outline-danger">Delete</button>
+                    //</form>
+                }
+                @*<a href="#" class="card-link">დეტალურად</a>*@
+                @*<a href="#" class="card-link">Another link</a>*@
+              </div>
+              <div class="card-footer text-muted">
+                2 days ago
+              </div>
             </div>
+            
+        }
+        </div>
+    }
 
-        </div>
-    </div>
-</div>
-<!-- end section -->
-<!-- zowie da brendebistvis -->
-<!-- section -->
-<!--<div class="section padding_layout_1" style="padding: 50px 0;">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="full">
-                    <ul class="brand_list">
-                        <li><img src="images/it_service/brand_icon1.png" alt="#" /></li>
-                        <li><img src="images/it_service/brand_icon2.png" alt="#" /></li>
-                        <li><img src="images/it_service/brand_icon3.png" alt="#" /></li>
-                        <li><img src="images/it_service/brand_icon4.png" alt="#" /></li>
-                        <li><img src="images/it_service/brand_icon5.png" alt="#" /></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>-->
-<!-- end section -->
+}
+
+
+<script>
+
+    //window.onload = function(){
+    //    var modal = document.getElementsByClassName("modal");
+    //    console.log(modal);
+    //}
+
+//    var modal = document.getElementsByClassName("modal");
+
+//    for(var j=0;j<modal.length;j++){
+
+//        modal[j].style.display = 'hidden';
+//    }
+
+    function DelModal(i) {
+    document.getElementsByClassName("modal")[i].style.display = 'block';
+}
+
+window.onclick = function (event) {
+    let modal = document.getElementsByClassName("modal");
+    for (var i = 0; i < modal.length; i++) {
+        if (event.target == modal[i]) {
+            modal[i].style.display = "none";
+        }
+    }
+}
+
+function closeModal(l) {
+    console.log(l);
+    let modal = document.getElementsByClassName("modal");
+    var v = l;
+    modal[v].style.display = "none";
+}
+
+</script>

@@ -1,0 +1,32 @@
+﻿@model eCommerceForPeripherials.Models.ViewModels.RegisterViewModel
+
+
+<form id="registerForm" method="post" asp-controller="Account" asp-action="Register" hidden>
+    <div asp-validation-summary="All"></div>
+    <fieldset>
+        <div class="form-group">
+            <label for="user" class="label" style="font-size:15px;">სახელი</label>
+            <input id="user" asp-for="Name" type="text" class="form-control">
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="em" class="label" style="font-size:15px;">ელ.ფოსტა</label>
+            <input id="em" asp-for="Email" type="text" name="Email" class="form-control">
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="pas" class="label" style="font-size:15px;">პაროლი</label>
+            <input id="pas" type="password" asp-for="Password" class="form-control" data-type="password">
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="cpass" class="label" style="font-size:15px;">გაიმეორეთ პაროლი</label>
+            <input id="cpass" type="password" asp-for="ConfirmPassword" class="form-control" data-type="password">
+            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+        </div>
+        <div class="form-group" style="padding-top:1%;">
+            <input type="submit" class="btn btn-outline-light" value="რეგისტრაცია">
+            <a href="#" for="tab-1" style="padding-left:2%;">Already Member?</a>
+        </div>
+    </fieldset>
+</form>

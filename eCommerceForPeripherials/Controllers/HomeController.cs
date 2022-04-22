@@ -10,25 +10,26 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using eCommerceForPeripherials.Models.ViewModels;
 using HltvParser;
+using System.Text;
 
 namespace eCommerceForPeripherials.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IApplicationDbContext _db;
+        private readonly ApplicationDbContext _db;
 
-        public HomeController(IApplicationDbContext db)
+        public HomeController(ApplicationDbContext db)
         {
             _db = db;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             //HltvParser.HltvParser parser = new HltvParser.HltvParser();
             //var Players = await parser.GetTopPlayers();
 
             TempData["Home"] = "active";
-
+            
             var itemList = _db.Items;
 
             return View(itemList.OrderByDescending(x=>x.Id).ToList());
@@ -61,7 +62,7 @@ namespace eCommerceForPeripherials.Controllers
         [HttpGet]
         public IActionResult Contact()
         {
-            TempData["Contact"] = "active";
+            //TempData["Contact"] = "active";
             return View();
         }
 

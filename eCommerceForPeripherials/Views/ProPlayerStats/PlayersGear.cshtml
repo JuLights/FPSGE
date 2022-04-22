@@ -1,73 +1,63 @@
-﻿@model List<HltvParser.PlayersGear>
+﻿@model IEnumerable<HltvParser.PlayersGear>
 
 @{
     ViewData["Title"] = "PlayersGear";
-
-    var page = Convert.ToInt32(TempData["page"]);
-    var pageCount = Convert.ToInt32(TempData["pageCount"]);
 }
 
-<div style="text-align:center;">
-    <h2>პროფესიონალური მოთამაშეების პერიფერია</h2>
-    <h3>პერიფერია რომელსაც ჩვენი მაღაზია ფლობს, იქნება <span style="color:blue;">ლურჯი</span> ფერით</h3>
-</div>
-
-
-@*<p>
-    <a asp-action="Create">Create New</a>
-</p>*@
-<div style="overflow:auto;">
-    <table class="table">
+<table class="table">
     <thead>
         <tr>
             <th>
-                @*@Html.DisplayNameFor(model => model.Team)*@ <span>გუნდი</span>
+                @Html.DisplayNameFor(model => model.Team)
             </th>
             <th>
-                @*@Html.DisplayNameFor(model => model.Name)*@ <span>სახელი</span>
+                @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
-                @*@Html.DisplayNameFor(model => model.Role)*@ <span>როლი</span>
+                @Html.DisplayNameFor(model => model.Role)
             </th>
             <th>
-                @*@Html.DisplayNameFor(model => model.Mouse)*@ <span>მაუსი</span>
+                @Html.DisplayNameFor(model => model.Mouse)
             </th>
             <th>
-                @*@Html.DisplayNameFor(model => model.KeyBoard)*@ <span>კლავიატურა</span>
+                @Html.DisplayNameFor(model => model.KeyBoard)
             </th>
             <th>
-                @*@Html.DisplayNameFor(model => model.Headset)*@ <span>ყურსასმენი</span>
+                @Html.DisplayNameFor(model => model.Headset)
             </th>
             <th>
-                @*@Html.DisplayNameFor(model => model.Monitor)*@ <span>მონიტორი</span>
+                @Html.DisplayNameFor(model => model.MouseHz)
             </th>
             <th>
-                @*@Html.DisplayNameFor(model => model.MonitorHz)*@ <span>მონიტორის ჰერცი</span>
-            </th>
-
-            <th>
-                @*@Html.DisplayNameFor(model => model.MousePad)*@ <span>მაუსპედი</span>
-            </th>
-
-            <th>
-                @*@Html.DisplayNameFor(model => model.MouseHz)*@ <span>მაუსის ჰერცი</span>
+                @Html.DisplayNameFor(model => model.DPI)
             </th>
             <th>
-                @*@Html.DisplayNameFor(model => model.DPI)*@ <span>წერტილები ინჩზე(DPI)</span>
+                @Html.DisplayNameFor(model => model.Sens)
             </th>
             <th>
-                @*@Html.DisplayNameFor(model => model.Sens)*@ <span>სენსიტიურობა</span>
+                @Html.DisplayNameFor(model => model.eDPI)
             </th>
             <th>
-                @*@Html.DisplayNameFor(model => model.GPU)*@ <span>ვიდეო კარტა</span>
+                @Html.DisplayNameFor(model => model.Monitor)
             </th>
             <th>
-                @*@Html.DisplayNameFor(model => model.Resolution)*@ <span>რეზოლუცია</span>
+                @Html.DisplayNameFor(model => model.MonitorHz)
             </th>
             <th>
-                @*@Html.DisplayNameFor(model => model.ScalingMode)*@ <span>სკალირების რეჟიმი</span>
+                @Html.DisplayNameFor(model => model.GPU)
             </th>
-
+            <th>
+                @Html.DisplayNameFor(model => model.Resolution)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AspectRatio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ScalingMode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MousePad)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -84,49 +74,13 @@
                 @Html.DisplayFor(modelItem => item.Role)
             </td>
             <td>
-                @{
-                    if(item.MouseLink.Length>2)
-                    {
-                        <a href="@item.MouseLink" style="color:blue;">@Html.DisplayFor(modelItem => item.Mouse)</a>
-                    }
-                    else
-                    {
-                        @Html.DisplayFor(modelItem => item.Mouse)
-                    }
-                }
+                <a href="@item.MouseLink">@Html.DisplayFor(modelItem => item.Mouse)</a>
             </td>
             <td>
-                @{
-                    if(item.KeyBoardLink.Length>2)
-                    {
-                        <a href="@item.KeyBoardLink" style="color:blue;">@Html.DisplayFor(modelItem => item.KeyBoard)</a>
-                    }
-                    else
-                    {
-                        @Html.DisplayFor(modelItem => item.KeyBoard)
-                    }
-                }
+                <a href="@item.KeyBoardLink">@Html.DisplayFor(modelItem => item.KeyBoard)</a>
             </td>
             <td>
-                @{
-                    if(item.HeadsetLink.Length>2)
-                    {
-                        <a href="@item.HeadsetLink" style="color:blue;">@Html.DisplayFor(modelItem => item.Headset)</a>
-                    }
-                    else
-                    {
-                        @Html.DisplayFor(modelItem => item.Headset)
-                    }
-                }
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Monitor)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MonitorHz)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MousePad)
+                <a href="@item.HeadsetLink">@Html.DisplayFor(modelItem => item.Headset)</a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.MouseHz)
@@ -138,46 +92,30 @@
                 @Html.DisplayFor(modelItem => item.Sens)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.eDPI)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Monitor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MonitorHz)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.GPU)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Resolution)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.AspectRatio)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.ScalingMode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MousePad)
             </td>
         </tr>
 }
     </tbody>
 </table>
-
-<div class="pagination" style="display: flex; justify-content:center;" id="myPag">
-  <a asp-controller="ProPlayerStats" asp-action="PlayersGear" asp-route-id="1">&laquo;</a>
-        @{
-
-            for(int i = 1; i <= pageCount-(pageCount-(page+4)); i++)
-            {
-                if (page != pageCount && page < pageCount)
-                {
-                    if(page == i)
-                    {
-                        <a asp-controller="ProPlayerStats" asp-action="PlayersGear" asp-route-id="@i" class="pages active">@i</a>
-                    }
-                    else
-                    {
-                        <a asp-controller="ProPlayerStats" asp-action="PlayersGear" asp-route-id="@i" class="pages">@i</a>
-                    }
-                }
-                else
-                {
-                    <a asp-controller="ProPlayerStats" asp-action="PlayersGear" asp-route-id="@pageCount" class="pages active">@pageCount</a>
-                    break;
-                }
-                
-            }
-    }
-  <a asp-controller="ProPlayerStats" asp-action="PlayersGear" asp-route-id="@pageCount">&raquo;</a>
-</div>
-
-
-</div>

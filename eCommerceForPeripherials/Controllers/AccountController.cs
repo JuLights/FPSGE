@@ -17,11 +17,11 @@ namespace eCommerceForPeripherials.Controllers
 
     public class AccountController : Controller
     {
-        private readonly IApplicationDbContext _db;
+        private readonly ApplicationDbContext _db;
         UserManager<ApplicationUser> _userManager; //IdentityUser - bazashi AspNetUsers tables ari
         SignInManager<ApplicationUser> _signInManager;
         RoleManager<IdentityRole> _roleManager;
-        public AccountController(IApplicationDbContext db, UserManager<ApplicationUser> userManager, 
+        public AccountController(ApplicationDbContext db, UserManager<ApplicationUser> userManager, 
             SignInManager<ApplicationUser> signInManager, RoleManager<IdentityRole> roleManager)
         {
             _db = db;
@@ -33,13 +33,6 @@ namespace eCommerceForPeripherials.Controllers
         public IActionResult Login()
         {
             TempData["Authorization"] = "active";
-            //var defaultClaims = new List<Claim>
-            //{
-            //    new Claim(ClaimTypes.Name,"satish")
-            //};
-            //var defaultIdentityprovider = new ClaimsIdentity(defaultClaims, "default");
-            //var userPrincipal = new ClaimsPrincipal(defaultIdentityprovider);
-            //await HttpContext.SignInAsync(userPrincipal);
 
             return View();
         }

@@ -14,8 +14,8 @@ namespace eCommerceForPeripherials.Controllers
     [Authorize(Roles ="Admin")]
     public class AdminController : Controller
     {
-        private readonly IApplicationDbContext _db;
-        public AdminController(IApplicationDbContext db)
+        private readonly ApplicationDbContext _db;
+        public AdminController(ApplicationDbContext db)
         {
             _db = db;
         }
@@ -23,7 +23,6 @@ namespace eCommerceForPeripherials.Controllers
         //login
         public IActionResult Index()
         {
-
             return View();
         }
 

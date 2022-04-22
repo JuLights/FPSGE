@@ -1,42 +1,34 @@
-﻿@model List<HltvParser.Player>
+﻿@model IEnumerable<HltvParser.Player>
 
 @{
     ViewData["Title"] = "Index";
-
-    var page = Convert.ToInt32(TempData["page"]);
-    var pageCount = Convert.ToInt32(TempData["pageCount"]);
 }
 
-<h3 style="padding-left:25px; color:#141414;">თამაშის სახეობა: Counter-Strike:Global Offensive</h3>
-
-@*<p>
-    <h2></h2>
-</p>*@
 <table class="table">
-    <thead style="text-align:center;">
+    <thead>
         <tr>
             <th>
-                @*@Html.DisplayNameFor(model => model.Name)*@ <span>სახელი</span>
+                @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
-                @*@Html.DisplayNameFor(model => model.Maps)*@<span>რუქები</span>
+                @Html.DisplayNameFor(model => model.Maps)
             </th>
             <th>
-                @*@Html.DisplayNameFor(model => model.Rounds)*@<span>რაუნდები</span>
+                @Html.DisplayNameFor(model => model.Rounds)
             </th>
             <th>
-                @*@Html.DisplayNameFor(model => model.KD_Diff)*@<span>მკვლელობისა და სიკვდილიანობის სხვაობა</span>
+                @Html.DisplayNameFor(model => model.KD_Diff)
             </th>
             <th>
-                @*@Html.DisplayNameFor(model => model.KD)*@<span>მკვლელობა/სიკვდილიანობა(KD)</span>
+                @Html.DisplayNameFor(model => model.KD)
             </th>
             <th>
-                @*@Html.DisplayNameFor(model => model.Rating)*@<span>HLTV-ს რეიტინგი</span>
+                @Html.DisplayNameFor(model => model.Rating)
             </th>
             <th></th>
         </tr>
     </thead>
-    <tbody style="text-align:center;">
+    <tbody>
 @foreach (var item in Model) {
         <tr>
             <td>
@@ -57,38 +49,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Rating)
             </td>
-            @*<td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>*@
         </tr>
 }
     </tbody>
 </table>
-
-<div class="pagination" style="display: flex; justify-content:center;" id="myPag">
-  <a asp-controller="ProPlayerStats" asp-action="Index" asp-route-id="1">&laquo;</a>
-    @{
-        for(int i = 1; i <= pageCount-(pageCount-(page+4)); i++)
-        {
-            if (page != pageCount && page < pageCount)
-            {
-                if(page == i)
-                {
-                    <a asp-controller="ProPlayerStats" asp-action="Index" asp-route-id="@i" class="pages active">@i</a>
-                }
-                else
-                {
-                    <a asp-controller="ProPlayerStats" asp-action="Index" asp-route-id="@i" class="pages">@i</a>
-                }
-            }
-            else
-            {
-                <a asp-controller="ProPlayerStats" asp-action="Index" asp-route-id="@pageCount" class="pages active">@pageCount</a>
-                break;
-            }
-        }
-    }
-  <a asp-controller="ProPlayerStats" asp-action="Index" asp-route-id="@pageCount">&raquo;</a>
-</div>

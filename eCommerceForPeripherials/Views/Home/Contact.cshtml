@@ -1,45 +1,40 @@
 ﻿@model eCommerceForPeripherials.Models.ViewModels.ContactViewModel
+
 @{
     ViewData["Title"] = "Contact";
 }
 
-<div class="row" style="background-color:black; padding-bottom:120px;">
-    <div class="login-wrap">
-        <div class="login-html">
-            <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab" style="position:center;">Contact</label>
-            <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab" hidden>Sign Up</label>
-            <div class="login-form">
-                <form id="contact" method="post" asp-controller="Home" asp-action="Contact">
-                    <div class="sign-in-htm">
-                        <div class="group">
-                            <label for="user" class="label">Email</label>
-                            <input id="user" asp-for="Email" type="text" class="input" required>
-                        </div>
-                        <div class="group">
-                            <label for="pass" class="label">Phone Number</label>
-                            <input id="num" asp-for="MobileNumber" onfocusout="SetStartValue()" value="+995 " type="text" class="input" required>
-                        </div>
-                        <div class="group">
-                            <label for="pass" class="label">Message</label>
-                            <textarea id="pass" asp-for="Message" type="tel" class="input" rows="12" required></textarea>
-                        </div>
-                        <div class="group">
-                            <input type="submit" class="button" value="Sign In">
-                        </div>
-                        @*<div class="hr"></div>*@
-                    </div>
-
-                </form>
-            </div>
+<div class="row" style="justify-content:center; max-width:35%; margin:auto; padding-top:0px;">
+    <form id="contact" method="post" asp-controller="Home" asp-action="Contact">
+        <div asp-validation-summary="All"></div>
+        <div class="form-group">
+            <label for="email" class="form-label mt-4">Email</label>
+            <input id="email" asp-for="Email" class="form-control" required>
+            <span asp-validation-for="Email" class="text-danger"></span>
         </div>
-    </div>
+        <div class="form-group">
+            <label for="mobile" class="form-label mt-4">Phone Number</label>
+            <input id="mobile" asp-for="MobileNumber" onfocusout="SetStartValue()" value="+995 " class="form-control" required>
+            <span asp-validation-for="MobileNumber" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="mess" class="form-label mt-4">Message</label>
+            <textarea id="mess" asp-for="Message" class="form-control" rows="12" required></textarea>
+            <span asp-validation-for="Message" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-secondary" value="Sign In">
+        </div>
+
+    </form>
+
 </div>
 
 <script>
     function SetStartValue() {
-        var val = document.getElementById('num').value;
+        var val = document.getElementById('mobile').value;
         if (!val.includes('+995 ')) {
-            document.getElementById('num').value = '+995 ' + val;
+            document.getElementById('mobile').value = '+995 ' + val;
         }
     }
 </script>
