@@ -27,5 +27,10 @@ namespace eCommerceForPeripherials.Data
         public DbSet<Products> Products { get; set; }
         public DbSet<LastItemIds> LastItemIds { get; set; }
         public DbSet<ProductsGEL> productsGELs { get; set; }
+        public async Task<int> SaveChangesAsync()
+        {
+            var result = await this.SaveChangesAsync();
+            return result;
+        }
     }
 }

@@ -7,7 +7,7 @@ namespace eCommerceForPeripherials.Models.Helpers
     public class GearLinkHelper
     {
         //forHeadset
-        public async Task<string> CheckAndAddHeadsetInPros(Item item, ApplicationDbContext _db, string operation)
+        public async Task<string> CheckAndAddHeadsetInPros(Item item, IApplicationDbContext _db, string operation)
         {
             var playersGear = _db.PlayersGear.ToList();
             //var ourItems = _db.Items.ToList();
@@ -42,7 +42,7 @@ namespace eCommerceForPeripherials.Models.Helpers
 
         }
         //forKeyboard
-        public async Task<string> CheckAndAddKeyboardInPros(Item item, ApplicationDbContext _db, string operation)
+        public async Task<string> CheckAndAddKeyboardInPros(Item item, IApplicationDbContext _db, string operation)
         {
             var playersGear = _db.PlayersGear.ToList();
             var ourItems = _db.Items.ToList();
@@ -77,7 +77,7 @@ namespace eCommerceForPeripherials.Models.Helpers
         }
 
         //forMouse
-        public async Task<string> CheckAndAddMouseInPros(Item item, ApplicationDbContext _db, string operation)
+        public async Task<string> CheckAndAddMouseInPros(Item item, IApplicationDbContext _db, string operation)
         {
             var playersGear = _db.PlayersGear.ToList();
             var ourItems = _db.Items.ToList();

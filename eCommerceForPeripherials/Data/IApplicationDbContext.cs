@@ -1,4 +1,5 @@
-﻿using eCommerceForPeripherials.Models;
+﻿using System.Threading.Tasks;
+using eCommerceForPeripherials.Models;
 using eCommerceForPeripherials.Models.Admin;
 using HltvParser;
 using Microsoft.EntityFrameworkCore;
@@ -13,5 +14,7 @@ namespace eCommerceForPeripherials.Data
         DbSet<PlayersGear> PlayersGear { get; set; }
         DbSet<Products> Products { get; set; }
         DbSet<ProductsGEL> productsGELs { get; set; }
+        int SaveChanges();
+        Task<int> SaveChangesAsync();
     }
 }

@@ -32,6 +32,7 @@ namespace eCommerceForPeripherials.Controllers
             var itemList = _db.Items;
 
             return View(itemList.OrderByDescending(x=>x.Id).ToList());
+            //return View();
         }
 
         [HttpGet]
